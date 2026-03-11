@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Euro Rental Cars LLC</title>
+  <meta name="description" content="Contact Euro Rental Cars LLC in St. Petersburg, Florida. Call, email, or visit us at 360 Central Ave Suite 800. Open 7 days a week.">
+  <meta property="og:title" content="Contact — Euro Rental Cars LLC">
+  <meta property="og:description" content="Reach Euro Rental Cars LLC by phone, email, or in person. We're here to help you book the perfect vehicle.">
+  <link rel="canonical" href="https://www.eurorentalcarsllc.com/contact.html">
+  <!-- JSON-LD: Local Business -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRental",
+    "name": "Euro Rental Cars LLC",
+    "image": "https://www.eurorentalcarsllc.com/lamborghini_urus.jpg",
+    "url": "https://www.eurorentalcarsllc.com",
+    "telephone": "+17274349258",
+    "email": "mailroom@eurorentalcarsllc.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "360 Central Ave Suite 800",
+      "addressLocality": "St. Petersburg",
+      "addressRegion": "FL",
+      "postalCode": "33701",
+      "addressCountry": "US"
+    },
+    "openingHours": "Mo-Su 08:00-20:00",
+    "priceRange": "$$$$",
+    "sameAs": [
+      "https://www.facebook.com/libertyrentalcars"
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="./css/styles.css">
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .contact-info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .contact-info-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .contact-info-item:hover {
+      border-color: rgba(205,255,0,0.3);
+    }
+    .contact-info-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(205,255,0,0.08);
+      border: 1px solid rgba(205,255,0,0.15);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+    .contact-info-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+    .contact-info-text h4 {
+      font-family: var(--font-display);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .contact-info-text a,
+    .contact-info-text p {
+      font-size: 15px;
+      color: var(--text-primary);
+      text-decoration: none;
+      line-height: 1.5;
+    }
+    .contact-info-text a:hover {
+      color: var(--accent);
+    }
+    .contact-map {
+      margin-top: 24px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      height: 260px;
+      background: var(--bg-card);
+      position: relative;
+    }
+    .contact-map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .contact-map-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+    .contact-map-fallback svg {
+      color: var(--accent);
+      opacity: 0.7;
+    }
+    .contact-map-fallback p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .contact-map-fallback a {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Contact Form */
+    .contact-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .contact-form-card h2 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+    .contact-form-card > p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg-body);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: var(--font-body);
+      width: 100%;
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-muted);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 38px;
+    }
+    .form-group select option {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+    .contact-submit-btn {
+      width: 100%;
+      margin-top: 8px;
+      justify-content: center;
+      font-size: 15px;
+      padding: 16px;
+    }
+    #contact-success {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+    }
+    #contact-success .success-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(205,255,0,0.1);
+      border: 1px solid rgba(205,255,0,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: var(--accent);
+    }
+    #contact-success h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+    #contact-success p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* Hours block */
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
+      margin-top: 4px;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+    .hours-row .day { color: var(--text-secondary); }
+    .hours-row .time { color: var(--text-primary); font-weight: 500; }
+
+    @media (max-width: 860px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-card { padding: 24px; }
+    }
+    @media (max-width: 540px) {
+      .hours-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Euro Rental Cars LLC — Home">
+    <svg viewBox="0 0 200 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polygon points="8,22 16,8 24,22 16,36" fill="#CDFF00"/>
+      <text x="32" y="17" font-family="'Bebas Neue',sans-serif" font-size="20" fill="#CDFF00" letter-spacing="2">EURO</text>
+      <text x="32" y="35" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#FFFFFF" letter-spacing="3">RENTAL CARS LLC</text>
+    </svg>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fleet.html">Fleet</a></li>
+    <li><a href="exotic-fleet.html">Exotic Fleet</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="policy.html">Policy</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="booking.html" class="btn btn-accent">Book Now</a>
+  </div>
+  <button class="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="fleet.html">Fleet</a>
+  <a href="exotic-fleet.html">Exotic Fleet</a>
+  <a href="programs.html">Programs</a>
+  <a href="policy.html">Policy</a>
+  <a href="contact.html">Contact</a>
+  <a href="booking.html" class="btn btn-accent" style="border-radius:9999px;">Book Now</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" aria-labelledby="contact-heading">
+  <div class="page-hero-bg" aria-hidden="true">
+    <img src="./bentley_bentayga.jpg" alt="" loading="eager" decoding="async">
+  </div>
+  <div class="container page-hero-content">
+    <div class="section-label fade-up">Get In Touch</div>
+    <h1 class="display-lg fade-up stagger-1" id="contact-heading">Contact Us</h1>
+    <p class="body-lg fade-up stagger-2">We're here to help. Reach out to book, ask questions, or learn about our fleet.</p>
+  </div>
+</section>
+
+<!-- CONTACT MAIN -->
+<section class="section-pad" aria-labelledby="contact-form-heading">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- LEFT: Info + Map -->
+      <div class="contact-info-block fade-up">
+
+        <div>
+          <div class="section-label" style="margin-bottom:12px;">Reach Us</div>
+          <h2 class="display-sm" id="contact-form-heading" style="margin-bottom:4px;">Let's Connect</h2>
+          <p class="body-md" style="color:var(--text-secondary);margin-top:8px;">Questions about a vehicle, booking, or our programs? Our team responds within a few hours.</p>
+        </div>
+
+        <!-- Phone -->
+        <a href="tel:+17274349258" class="contact-info-item" style="text-decoration:none;">
+          <div class="contact-info-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.39 9.1 19.79 19.79 0 01.32 4.47 2 2 0 012.3 2.27h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.17 6.17l.71-.71a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="contact-info-text">
+            <h4>Phone</h4>
+            <p>+1 (727) 434-9258</p>
+          </div>
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:mailroom@eurorentalcarsllc.com" class="contact-info-item" style="text-decoration:none;">
+          <div class="contact-info-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-info-text">
+            <h4>Email</h4>
+            <p>mailroom@eurorentalcarsllc.com</p>
+          </div>
+        </a>
+
+        <!-- Address -->
+        <div class="contact-info-item">
+          <div class="contact-info-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-info-text">
+            <h4>Address</h4>
+            <p>360 Central Ave Suite 800<br>St. Petersburg, FL 33701</p>
+          </div>
+        </div>
+
+        <!-- Hours -->
+        <div class="contact-info-item" style="flex-direction:column;align-items:flex-start;">
+          <div style="display:flex;gap:16px;align-items:center;width:100%;margin-bottom:16px;">
+            <div class="contact-info-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="contact-info-text">
+              <h4>Hours</h4>
+              <p>Open 7 days a week</p>
+            </div>
+          </div>
+          <div class="hours-grid" style="width:100%;">
+            <div class="hours-row"><span class="day">Mon – Fri</span><span class="time">8:00 AM – 8:00 PM</span></div>
+            <div class="hours-row"><span class="day">Saturday</span><span class="time">9:00 AM – 6:00 PM</span></div>
+            <div class="hours-row"><span class="day">Sunday</span><span class="time">10:00 AM – 5:00 PM</span></div>
+            <div class="hours-row"><span class="day">Holidays</span><span class="time">By Appointment</span></div>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="contact-map" aria-label="Map showing Euro Rental Cars LLC location">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3526.0!2d-82.6407!3d27.7706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2e55f7e62d3b5%3A0x1a2b3c4d5e6f7a8b!2s360+Central+Ave+%23800%2C+St.+Petersburg%2C+FL+33701!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Euro Rental Cars LLC location map"
+            allowfullscreen></iframe>
+        </div>
+
+      </div><!-- /.contact-info-block -->
+
+      <!-- RIGHT: Contact Form -->
+      <div class="contact-form-card fade-up stagger-2">
+
+        <form id="contact-form" action="https://formspree.io/f/placeholder" method="POST" data-validate novalidate>
+          <h2>Send a Message</h2>
+          <p>Fill out the form below and we'll be in touch shortly.</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-first">First Name <span style="color:var(--accent);">*</span></label>
+              <input type="text" id="contact-first" name="firstName" placeholder="John" required autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label for="contact-last">Last Name <span style="color:var(--accent);">*</span></label>
+              <input type="text" id="contact-last" name="lastName" placeholder="Smith" required autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-email">Email Address <span style="color:var(--accent);">*</span></label>
+            <input type="email" id="contact-email" name="email" placeholder="john@example.com" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-phone">Phone Number</label>
+            <input type="tel" id="contact-phone" name="phone" placeholder="+1 (000) 000-0000" autocomplete="tel">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-subject">Subject <span style="color:var(--accent);">*</span></label>
+            <select id="contact-subject" name="subject" required>
+              <option value="" disabled selected>Select a subject</option>
+              <option value="booking">Vehicle Booking Inquiry</option>
+              <option value="exotic">Exotic Fleet Inquiry</option>
+              <option value="programs">Programs & Promotions</option>
+              <option value="membership">Black Ruby Membership</option>
+              <option value="policy">Policy & Insurance Questions</option>
+              <option value="feedback">Feedback / Reviews</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-vehicle">Vehicle of Interest (optional)</label>
+            <select id="contact-vehicle" name="vehicle">
+              <option value="" disabled selected>Select a vehicle</option>
+              <optgroup label="Exotic Fleet">
+                <option>Lamborghini Urus — $1,599/day</option>
+                <option>Ferrari California T — $1,099/day</option>
+                <option>McLaren MP4-12C — $3,499/day</option>
+                <option>Bentley Bentayga — $799/day</option>
+                <option>Lamborghini Huracán — Contact for pricing</option>
+                <option>BMW i8 — $599/day</option>
+                <option>Corvette C8 Convertible — $699/day</option>
+                <option>Corvette C8 — $999/day</option>
+                <option>Corvette C7 — $349/day</option>
+                <option>Corvette Stingray — $449/day</option>
+              </optgroup>
+              <optgroup label="Standard Fleet">
+                <option>Sedan</option>
+                <option>SUV</option>
+                <option>Minivan</option>
+                <option>Luxury Sedan</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">Message <span style="color:var(--accent);">*</span></label>
+            <textarea id="contact-message" name="message" placeholder="Tell us how we can help…" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-accent contact-submit-btn">
+            Send Message
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" width="18" height="18"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </form>
+
+        <!-- Success State -->
+        <div id="contact-success" role="alert" aria-live="polite">
+          <div class="success-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="28" height="28" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>Message Sent!</h3>
+          <p>Thanks for reaching out. A member of our team will respond to your inquiry within a few hours during business hours.</p>
+        </div>
+
+      </div><!-- /.contact-form-card -->
+
+    </div><!-- /.contact-layout -->
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section style="padding: 80px 0; background: var(--bg-card); border-top: 1px solid var(--border);" aria-label="Quick actions">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px;margin:0 auto;" class="fade-up">
+
+      <div style="background:var(--bg-body);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px;display:flex;flex-direction:column;gap:16px;">
+        <div class="section-label">Ready to Ride?</div>
+        <h3 class="display-sm">Book a Vehicle</h3>
+        <p class="body-md" style="color:var(--text-secondary);">Reserve your exotic or luxury vehicle online in minutes. First come, first served — secure yours today.</p>
+        <a href="booking.html" class="btn btn-accent" style="align-self:flex-start;">
+          Reserve Now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div style="background:var(--bg-body);border:1px solid rgba(205,255,0,0.2);border-radius:var(--radius-lg);padding:36px;display:flex;flex-direction:column;gap:16px;">
+        <div class="section-label">Membership</div>
+        <h3 class="display-sm">Black Ruby Club</h3>
+        <p class="body-md" style="color:var(--text-secondary);">Access prestige vehicles, exclusive locations, and priority booking. Apply for private membership today.</p>
+        <a href="contact.html" class="btn btn-outline" style="align-self:flex-start;">
+          Inquire Now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" aria-label="Euro Rental Cars LLC — Home">
+          <svg viewBox="0 0 200 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <polygon points="8,22 16,8 24,22 16,36" fill="#CDFF00"/>
+            <text x="32" y="17" font-family="'Bebas Neue',sans-serif" font-size="20" fill="#CDFF00" letter-spacing="2">EURO</text>
+            <text x="32" y="35" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#FFFFFF" letter-spacing="3">RENTAL CARS LLC</text>
+          </svg>
+        </a>
+        <p>Florida's premier exotic and luxury car rental experience. Serving St. Petersburg, Tampa, Clearwater, and Palmetto.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/libertyrentalcars" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="fleet.html">Fleet</a></li>
+          <li><a href="exotic-fleet.html">Exotic Fleet</a></li>
+          <li><a href="booking.html">Book Now</a></li>
+          <li><a href="programs.html">Programs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="fleet.html">Reservations</a></li>
+          <li><a href="exotic-fleet.html">Vehicles</a></li>
+          <li><a href="programs.html">Promotions</a></li>
+          <li><a href="contact.html">Customer Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:mailroom@eurorentalcarsllc.com">mailroom@eurorentalcarsllc.com</a></li>
+          <li><a href="tel:+17274349258">+1 (727) 434-9258</a></li>
+          <li><a href="contact.html">360 Central Ave Suite 800<br>St. Petersburg, FL 33701</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Euro Rental Cars LLC. All Rights Reserved. &nbsp;|&nbsp; <a href="policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="policy.html">Terms &amp; Conditions</a></p>
+      <a href="#" class="back-to-top" aria-label="Back to top">
+        Back to top
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="./js/main.js"></script>
+<script>
+  // Contact form success handling
+  const contactForm = document.getElementById('contact-form');
+  const contactSuccess = document.getElementById('contact-success');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      // Validate required fields
+      contactForm.querySelectorAll('[required]').forEach(field => {
+        const isEmpty = field.tagName === 'SELECT'
+          ? !field.value
+          : !field.value.trim();
+        if (isEmpty) {
+          valid = false;
+          field.style.borderColor = '#ff4d4d';
+          field.addEventListener('change', () => { field.style.borderColor = ''; }, { once: true });
+          field.addEventListener('input', () => { field.style.borderColor = ''; }, { once: true });
+        }
+      });
+
+      if (!valid) {
+        const firstInvalid = contactForm.querySelector('[required][style*="border-color: rgb(255, 77, 77)"], [required][style*="border-color:#ff4d4d"]');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      // Show success state
+      contactForm.style.display = 'none';
+      contactSuccess.style.display = 'block';
+    });
+  }
+</script>
+</body>
+</html>

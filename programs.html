@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Euro Programs — Euro Rental Cars LLC</title>
+  <meta name="description" content="Explore Euro Rental Cars LLC programs — Rent n Advance monthly rental discounts, Summer Internship opportunities, and the Euro Investment Program.">
+  <meta property="og:title" content="Euro Programs — Euro Rental Cars LLC">
+  <meta property="og:description" content="Rent n Advance, Summer Internship, and the Euro Investment Program — exclusive opportunities from Euro Rental Cars LLC.">
+  <link rel="canonical" href="https://www.eurorentalcarsllc.com/programs.html">
+  <link rel="stylesheet" href="./css/styles.css">
+  <style>
+    /* ── Programs Layout ── */
+    .programs-grid {
+      display: grid;
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .program-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    .program-card:hover { border-color: var(--accent); }
+    .program-card.reverse { direction: rtl; }
+    .program-card.reverse > * { direction: ltr; }
+
+    @media (max-width: 768px) {
+      .program-card,
+      .program-card.reverse {
+        grid-template-columns: 1fr;
+        direction: ltr;
+      }
+    }
+
+    .program-card-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    @media (max-width: 768px) { .program-card-img { aspect-ratio: 16/9; } }
+
+    .program-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .program-card:hover .program-card-img img { transform: scale(1.04); }
+
+    .program-card-body {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+    @media (max-width: 640px) { .program-card-body { padding: 28px 20px; } }
+
+    .program-number {
+      font-family: var(--font-display);
+      font-size: 72px;
+      line-height: 1;
+      color: var(--accent-dim);
+      letter-spacing: -0.02em;
+      margin-bottom: -8px;
+    }
+
+    .program-card-body h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+
+    .program-card-body p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .program-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .program-highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .program-highlight-item svg { color: var(--accent); flex-shrink: 0; }
+
+    /* Investment program — full width special card */
+    .program-card-investment {
+      background: var(--bg-card);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+    }
+    .program-investment-img {
+      aspect-ratio: 21/9;
+      overflow: hidden;
+      position: relative;
+    }
+    @media (max-width: 640px) { .program-investment-img { aspect-ratio: 16/9; } }
+
+    .program-investment-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+    }
+    .program-investment-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 30%, var(--bg-card) 100%);
+    }
+    .program-investment-body {
+      padding: 48px;
+    }
+    @media (max-width: 640px) { .program-investment-body { padding: 28px 20px; } }
+
+    .program-investment-body h2 {
+      font-family: var(--font-display);
+      font-size: 40px;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    .program-investment-body p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 680px;
+      margin-bottom: 16px;
+    }
+    .investment-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      border-radius: 9999px;
+      padding: 8px 20px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .investment-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 32px 0;
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    @media (max-width: 768px) { .investment-points { grid-template-columns: 1fr; } }
+
+    .investment-point h4 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .investment-point p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* Internship extra info */
+    .internship-roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .role-pill {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Euro Rental Cars LLC — Home">
+    <svg viewBox="0 0 200 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polygon points="8,22 16,8 24,22 16,36" fill="#CDFF00"/>
+      <text x="32" y="17" font-family="'Bebas Neue',sans-serif" font-size="20" fill="#CDFF00" letter-spacing="2">EURO</text>
+      <text x="32" y="35" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#FFFFFF" letter-spacing="3">RENTAL CARS LLC</text>
+    </svg>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fleet.html">Fleet</a></li>
+    <li><a href="exotic-fleet.html">Exotic Fleet</a></li>
+    <li><a href="programs.html" class="active">Programs</a></li>
+    <li><a href="policy.html">Policy</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="booking.html" class="btn btn-accent">Book Now</a>
+  </div>
+  <button class="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="fleet.html">Fleet</a>
+  <a href="exotic-fleet.html">Exotic Fleet</a>
+  <a href="programs.html">Programs</a>
+  <a href="policy.html">Policy</a>
+  <a href="contact.html">Contact</a>
+  <a href="booking.html" class="btn btn-accent" style="border-radius:9999px;">Book Now</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" aria-labelledby="programs-heading">
+  <div class="page-hero-bg" aria-hidden="true">
+    <img src="./slideshow_3.jpg" alt="" loading="eager" decoding="async">
+  </div>
+  <div class="container page-hero-content">
+    <div class="section-label fade-up">Opportunities &amp; Benefits</div>
+    <h1 class="display-lg fade-up stagger-1" id="programs-heading">Euro Programs</h1>
+    <p class="body-lg fade-up stagger-2">Exclusive programs designed for members, renters, and future professionals.</p>
+  </div>
+</section>
+
+<!-- PROGRAMS SECTION -->
+<section class="section-pad" aria-labelledby="programs-desc-heading">
+  <div class="container">
+
+    <div style="max-width:680px;" class="fade-up">
+      <div class="section-label">3 Programs</div>
+      <h2 class="display-sm stagger-1" id="programs-desc-heading">Built for Every Stage</h2>
+      <p class="body-md stagger-2" style="margin-top:12px;color:var(--text-secondary);">
+        Whether you're renting monthly, starting your career, or looking to invest in the luxury transportation industry — Euro Rental Cars has a program for you.
+      </p>
+    </div>
+
+    <div class="programs-grid">
+
+      <!-- Program 1: Rent n Advance -->
+      <article class="program-card fade-up" aria-labelledby="program-rna-heading">
+        <div class="program-card-img">
+          <img src="./slideshow_2.jpg" alt="Luxury car rental — Rent n Advance program" loading="lazy" decoding="async">
+        </div>
+        <div class="program-card-body">
+          <div class="program-number">01</div>
+          <div class="section-label" style="margin-bottom:0;">Monthly Rental</div>
+          <h2 id="program-rna-heading">Rent n Advance</h2>
+          <p>
+            Commit to a monthly rental and unlock exclusive discounts on our full fleet. The Rent n Advance program rewards loyalty — the longer you rent, the more you save. Perfect for professionals, commuters, and anyone who needs a premium vehicle on a regular basis.
+          </p>
+          <div class="program-highlights">
+            <div class="program-highlight-item">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Monthly rate discounts on all vehicle classes
+            </div>
+            <div class="program-highlight-item">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Priority vehicle availability for members
+            </div>
+            <div class="program-highlight-item">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Flexible pick-up and drop-off options
+            </div>
+            <div class="program-highlight-item">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Upgrade opportunities at preferred rates
+            </div>
+          </div>
+          <a href="contact.html" class="btn btn-accent" style="width:fit-content;">Learn More</a>
+        </div>
+      </article>
+
+      <!-- Program 2: Summer Internship -->
+      <article class="program-card reverse fade-up" aria-labelledby="program-intern-heading">
+        <div class="program-card-img">
+          <img src="./submission_4.jpg" alt="Summer Internship program — Euro Rental Cars" loading="lazy" decoding="async">
+        </div>
+        <div class="program-card-body">
+          <div class="program-number">02</div>
+          <div class="section-label" style="margin-bottom:0;">Career Development</div>
+          <h2 id="program-intern-heading">Summer Internship Program</h2>
+          <p>
+            Gain hands-on experience in the luxury automotive and hospitality industry. Our summer internship program offers motivated individuals the opportunity to learn vehicle operations, customer relations, business management, and more — all within a dynamic, fast-paced environment.
+          </p>
+          <div class="program-highlights">
+            <div class="program-highlight-item">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Real-world luxury automotive experience
+            </div>
+            <div class="program-highlight-item">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Mentorship from industry professionals
+            </div>
+            <div class="program-highlight-item">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Potential for full-time placement post-internship
+            </div>
+          </div>
+          <div class="internship-roles">
+            <span class="role-pill">Customer Relations</span>
+            <span class="role-pill">Fleet Operations</span>
+            <span class="role-pill">Marketing</span>
+            <span class="role-pill">Business Development</span>
+          </div>
+          <a href="contact.html" class="btn btn-accent" style="width:fit-content;margin-top:8px;">Apply Now</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Program 3: Euro Investment — Full Width -->
+    <article class="program-card-investment fade-up" style="margin-top:32px;" aria-labelledby="program-invest-heading">
+      <div class="program-investment-img">
+        <img src="./slideshow_1.jpg" alt="Euro Investment Program — luxury car fleet investment" loading="lazy" decoding="async">
+      </div>
+      <div class="program-investment-body">
+        <div class="investment-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Program 03 — Exclusive Opportunity
+        </div>
+        <div class="section-label">Grow With Us</div>
+        <h2 id="program-invest-heading">Euro Investment Program</h2>
+        <p>
+          The Euro Investment Program is designed for forward-thinking individuals who want to participate in the growth of a premier luxury car rental operation. As a program participant, you contribute to the expansion of our fleet and infrastructure — and share in the returns that come with it.
+        </p>
+        <p>
+          This is not a passive investment — we work directly with participants to ensure transparency, accountability, and a shared vision for long-term success. Limited spots are available.
+        </p>
+
+        <div class="investment-points">
+          <div class="investment-point">
+            <h4>Fleet Expansion</h4>
+            <p>Investment funds are used directly to acquire and maintain additional luxury and exotic vehicles.</p>
+          </div>
+          <div class="investment-point">
+            <h4>Revenue Share</h4>
+            <p>Participants receive a share of rental revenue tied to the vehicles their investment supports.</p>
+          </div>
+          <div class="investment-point">
+            <h4>Transparent Reporting</h4>
+            <p>Regular performance reports and direct communication with the Euro Rental Cars team.</p>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <a href="contact.html" class="btn btn-accent">Inquire About Investing</a>
+          <a href="contact.html" class="btn btn-outline">Schedule a Call</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" aria-label="Euro Rental Cars LLC — Home">
+          <svg viewBox="0 0 200 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <polygon points="8,22 16,8 24,22 16,36" fill="#CDFF00"/>
+            <text x="32" y="17" font-family="'Bebas Neue',sans-serif" font-size="20" fill="#CDFF00" letter-spacing="2">EURO</text>
+            <text x="32" y="35" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#FFFFFF" letter-spacing="3">RENTAL CARS LLC</text>
+          </svg>
+        </a>
+        <p>Florida's premier exotic and luxury car rental experience. Serving St. Petersburg, Tampa, Clearwater, and Palmetto.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/libertyrentalcars" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="fleet.html">Fleet</a></li>
+          <li><a href="exotic-fleet.html">Exotic Fleet</a></li>
+          <li><a href="booking.html">Book Now</a></li>
+          <li><a href="programs.html">Programs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="fleet.html">Reservations</a></li>
+          <li><a href="exotic-fleet.html">Vehicles</a></li>
+          <li><a href="programs.html">Promotions</a></li>
+          <li><a href="contact.html">Customer Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:mailroom@eurorentalcarsllc.com">mailroom@eurorentalcarsllc.com</a></li>
+          <li><a href="tel:+17274349258">+1 (727) 434-9258</a></li>
+          <li><a href="contact.html">360 Central Ave Suite 800<br>St. Petersburg, FL 33701</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Euro Rental Cars LLC. All Rights Reserved. &nbsp;|&nbsp; <a href="policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="policy.html">Terms &amp; Conditions</a></p>
+      <a href="#" class="back-to-top" aria-label="Back to top">
+        Back to top
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="./js/main.js"></script>
+</body>
+</html>
