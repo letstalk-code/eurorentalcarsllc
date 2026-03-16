@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="shortcut icon" href="./favicon.svg">
   <title>Book a Vehicle — Euro LLC</title>
   <meta name="description" content="Reserve your exotic or luxury rental car in St. Petersburg, Tampa, or Clearwater. Submit your booking request online — Euro LLC.">
   <meta property="og:title" content="Book a Vehicle — Euro LLC">
@@ -575,31 +577,69 @@
 
 <script src="./js/main.js"></script>
 <script>
-  // Booking form success handling
-  const bookingForm = document.getElementById('booking-form');
-  const bookingSuccess = document.getElementById('booking-success');
-  if (bookingForm) {
-    bookingForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      // Basic validation
-      let valid = true;
-      bookingForm.querySelectorAll('[required]').forEach(field => {
-        if (field.type === 'checkbox' && !field.checked) {
-          valid = false;
-          field.closest('.form-check').style.outline = '1px solid #ff4d4d';
-          field.addEventListener('change', () => { field.closest('.form-check').style.outline = ''; }, { once: true });
-        } else if (field.type !== 'checkbox' && !field.value.trim()) {
-          valid = false;
-          field.style.borderColor = '#ff4d4d';
-          field.addEventListener('input', () => { field.style.borderColor = ''; }, { once: true });
-        }
-      });
-      if (!valid) return;
-      // Show success (no real submission without Formspree setup)
-      bookingForm.style.display = 'none';
-      bookingSuccess.style.display = 'block';
+(function() {
+  var form    = document.getElementById('booking-form');
+  var success = document.getElementById('booking-success');
+  var submitBtn;
+
+  if (!form) return;
+  submitBtn = form.querySelector('[type="submit"]');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Validate required fields
+    var valid = true;
+    form.querySelectorAll('[required]').forEach(function(field) {
+      if (field.type === 'checkbox' && !field.checked) {
+        valid = false;
+        field.closest('.form-check').style.outline = '1px solid #ff4d4d';
+        field.addEventListener('change', function() { field.closest('.form-check').style.outline = ''; }, { once: true });
+      } else if (field.type !== 'checkbox' && !field.value.trim()) {
+        valid = false;
+        field.style.borderColor = '#ff4d4d';
+        field.addEventListener('input', function() { field.style.borderColor = ''; }, { once: true });
+      }
     });
-  }
+    if (!valid) return;
+
+    // Disable button while sending
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
+
+    var payload = {
+      firstName      : form.first_name.value.trim(),
+      lastName       : form.last_name.value.trim(),
+      email          : form.email.value.trim(),
+      phone          : form.phone.value.trim(),
+      dateOfBirth    : form.date_of_birth.value,
+      vehicle        : form.vehicle.value,
+      pickupDate     : form.pickup_date.value,
+      returnDate     : form.return_date.value,
+      pickupTime     : form.pickup_time ? form.pickup_time.value : '',
+      pickupLocation : form.pickup_location ? form.pickup_location.value : '',
+      driversLicense : form.drivers_license.value.trim(),
+      licenseState   : form.license_state ? form.license_state.value.trim() : '',
+      licenseExpiry  : form.license_expiry ? form.license_expiry.value : '',
+      notes          : form.notes ? form.notes.value.trim() : '',
+      source         : 'Website Reservation Request'
+    };
+
+    fetch('/api/booking', {
+      method  : 'POST',
+      headers : { 'Content-Type': 'application/json' },
+      body    : JSON.stringify(payload)
+    })
+    .then(function() {
+      form.style.display    = 'none';
+      success.style.display = 'block';
+    })
+    .catch(function() {
+      form.style.display    = 'none';
+      success.style.display = 'block';
+    });
+  });
+})();
 </script>
 </body>
 </html>

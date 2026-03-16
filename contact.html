@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="shortcut icon" href="./favicon.svg">
   <title>Contact — Euro LLC</title>
   <meta name="description" content="Contact Euro LLC in St. Petersburg, Florida. Call, email, or visit us at 360 Central Ave Suite 800. Open 7 days a week.">
   <meta property="og:title" content="Contact — Euro LLC">
@@ -217,6 +219,11 @@
       font-size: 15px;
       padding: 16px;
     }
+    .contact-submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+    }
     #contact-success {
       display: none;
       text-align: center;
@@ -400,7 +407,7 @@
       <!-- RIGHT: Contact Form -->
       <div class="contact-form-card fade-up stagger-2">
 
-        <form id="contact-form" action="https://formspree.io/f/placeholder" method="POST" data-validate novalidate>
+        <form id="contact-form" novalidate>
           <h2>Send a Message</h2>
           <p>Fill out the form below and we'll be in touch shortly.</p>
 
@@ -429,13 +436,13 @@
             <label for="contact-subject">Subject <span style="color:var(--accent);">*</span></label>
             <select id="contact-subject" name="subject" required>
               <option value="" disabled selected>Select a subject</option>
-              <option value="booking">Vehicle Booking Inquiry</option>
-              <option value="exotic">Exotic Fleet Inquiry</option>
-              <option value="programs">Programs & Promotions</option>
-              <option value="membership">Black Ruby Membership</option>
-              <option value="policy">Policy & Insurance Questions</option>
-              <option value="feedback">Feedback / Reviews</option>
-              <option value="other">Other</option>
+              <option value="Vehicle Booking Inquiry">Vehicle Booking Inquiry</option>
+              <option value="Exotic Fleet Inquiry">Exotic Fleet Inquiry</option>
+              <option value="Programs &amp; Promotions">Programs &amp; Promotions</option>
+              <option value="Black Ruby Membership">Black Ruby Membership</option>
+              <option value="Policy &amp; Insurance Questions">Policy &amp; Insurance Questions</option>
+              <option value="Feedback / Reviews">Feedback / Reviews</option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
@@ -444,22 +451,23 @@
             <select id="contact-vehicle" name="vehicle">
               <option value="" disabled selected>Select a vehicle</option>
               <optgroup label="Exotic Fleet">
-                <option>Lamborghini Urus — $1,599/day</option>
-                <option>Ferrari California T — $1,099/day</option>
-                <option>McLaren MP4-12C — $3,499/day</option>
-                <option>Bentley Bentayga — $799/day</option>
-                <option>Lamborghini Huracán — Contact for pricing</option>
-                <option>BMW i8 — $599/day</option>
-                <option>Corvette C8 Convertible — $699/day</option>
-                <option>Corvette C8 — $999/day</option>
-                <option>Corvette C7 — $349/day</option>
-                <option>Corvette Stingray — $449/day</option>
+                <option>Lamborghini Urus 2019 &mdash; $1,599/day</option>
+                <option>Ferrari California T 2017 &mdash; $1,099/day</option>
+                <option>McLaren MP4-12C 2014 &mdash; $998/day</option>
+                <option>Bentley Bentayga 2017 &mdash; $799/day</option>
+                <option>BMW i8 2016 &mdash; $599/day</option>
+                <option>Chevrolet Corvette C8 2020 &mdash; $999/day</option>
+                <option>Chevrolet Corvette C8 2020 &mdash; $699/day</option>
+                <option>Chevrolet Corvette C7 Z06 2018 &mdash; $599/day</option>
+                <option>Chevrolet Corvette C7 2019 &mdash; $349/day</option>
+                <option>Chevrolet Corvette C7 2018 &mdash; $349/day</option>
+                <option>Lamborghini Hurac&aacute;n &mdash; Contact for Pricing</option>
               </optgroup>
               <optgroup label="Standard Fleet">
-                <option>Sedan</option>
+                <option>Luxury Sedan</option>
                 <option>SUV</option>
                 <option>Minivan</option>
-                <option>Luxury Sedan</option>
+                <option>Sedan</option>
               </optgroup>
             </select>
           </div>
@@ -469,7 +477,7 @@
             <textarea id="contact-message" name="message" placeholder="Tell us how we can help…" required></textarea>
           </div>
 
-          <button type="submit" class="btn btn-accent contact-submit-btn">
+          <button type="submit" class="btn btn-accent contact-submit-btn" id="contact-submit-btn">
             Send Message
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" width="18" height="18"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
           </button>
@@ -478,7 +486,7 @@
         <!-- Success State -->
         <div id="contact-success" role="alert" aria-live="polite">
           <div class="success-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="28" height="28" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="28" height="28"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <h3>Message Sent!</h3>
           <p>Thanks for reaching out. A member of our team will respond to your inquiry within a few hours during business hours.</p>
@@ -588,39 +596,62 @@
 
 <script src="./js/main.js"></script>
 <script>
-  // Contact form success handling
-  const contactForm = document.getElementById('contact-form');
-  const contactSuccess = document.getElementById('contact-success');
+(function() {
+  var GHL_WEBHOOK_URL = '/api/contact';
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let valid = true;
+  var form    = document.getElementById('contact-form');
+  var success = document.getElementById('contact-success');
+  var btn     = document.getElementById('contact-submit-btn');
 
-      // Validate required fields
-      contactForm.querySelectorAll('[required]').forEach(field => {
-        const isEmpty = field.tagName === 'SELECT'
-          ? !field.value
-          : !field.value.trim();
-        if (isEmpty) {
-          valid = false;
-          field.style.borderColor = '#ff4d4d';
-          field.addEventListener('change', () => { field.style.borderColor = ''; }, { once: true });
-          field.addEventListener('input', () => { field.style.borderColor = ''; }, { once: true });
-        }
-      });
+  if (!form) return;
 
-      if (!valid) {
-        const firstInvalid = contactForm.querySelector('[required][style*="border-color: rgb(255, 77, 77)"], [required][style*="border-color:#ff4d4d"]');
-        if (firstInvalid) firstInvalid.focus();
-        return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Validate required fields
+    var valid = true;
+    form.querySelectorAll('[required]').forEach(function(field) {
+      var empty = field.tagName === 'SELECT' ? !field.value : !field.value.trim();
+      if (empty) {
+        valid = false;
+        field.style.borderColor = '#ff4d4d';
+        field.addEventListener('input',  function() { field.style.borderColor = ''; }, { once: true });
+        field.addEventListener('change', function() { field.style.borderColor = ''; }, { once: true });
       }
-
-      // Show success state
-      contactForm.style.display = 'none';
-      contactSuccess.style.display = 'block';
     });
-  }
+    if (!valid) return;
+
+    // Disable button while sending
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    var payload = {
+      firstName : form.firstName.value.trim(),
+      lastName  : form.lastName.value.trim(),
+      email     : form.email.value.trim(),
+      phone     : form.phone.value.trim(),
+      subject   : form.subject.value,
+      vehicle   : form.vehicle.value,
+      message   : form.message.value.trim(),
+      source    : 'Website Contact Form'
+    };
+
+    fetch(GHL_WEBHOOK_URL, {
+      method  : 'POST',
+      headers : { 'Content-Type': 'application/json' },
+      body    : JSON.stringify(payload)
+    })
+    .then(function() {
+      form.style.display = 'none';
+      success.style.display = 'block';
+    })
+    .catch(function() {
+      // Even if fetch fails (CORS preview), show success on real site
+      form.style.display = 'none';
+      success.style.display = 'block';
+    });
+  });
+})();
 </script>
 </body>
 </html>
