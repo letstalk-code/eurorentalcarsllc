@@ -36,9 +36,9 @@ module.exports = async (req, res) => {
       source     : 'Website Contact Form',
       tags       : ['website-contact'],
       customFields: [
-        subject ? { key: 'contact_subject',  field_value: subject  } : null,
-        vehicle ? { key: 'vehicle_interest', field_value: vehicle  } : null,
-        message ? { key: 'contact_message',  field_value: message  } : null,
+        subject ? { id: 'pJVSIE2zLvZHZcvI8CT8', field_value: subject  } : null,
+        vehicle ? { id: 'pYRKjlqKiICx3Q8aVBkf', field_value: vehicle  } : null,
+        message ? { id: '7yey6Zh6slXZonsaEQ1n', field_value: message  } : null,
       ].filter(Boolean),
     };
 
