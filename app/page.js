@@ -42,7 +42,7 @@ export default function Home() {
             <br />
             Own the thrill.
           </h1>
-          <p className="hero-sub">Florida's premier exotic car rental experience</p>
+          <p className="hero-sub">Florida&apos;s premier exotic car rental experience</p>
           <div className="hero-ctas">
             <Link href="/booking" className="btn btn-accent">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -73,7 +73,7 @@ export default function Home() {
             <div className="about-content">
               <div className="section-label fade-up">About Us</div>
               <h2 className="display-md fade-up stagger-1" id="about-heading">
-                From exotic sports cars to luxury sedans and SUVs, Euro Rental Cars' Exotic Collection offers an exceptional selection and trusted, personalized service.
+                From exotic sports cars to luxury sedans and SUVs, Euro Rental Cars&apos; Exotic Collection offers an exceptional selection and trusted, personalized service.
               </h2>
               <p className="body-lg fade-up stagger-2">
                 Our friendly Support Team is available to help you 24 hours a day, seven days a week. We look forward to hearing from you!
@@ -108,7 +108,7 @@ export default function Home() {
             <div className="showcase-info">
               <div className="showcase-num">001</div>
               <h3 className="display-sm showcase-name">Lamborghini Urus</h3>
-              <p className="body-md showcase-desc">The world's first Super Sport Utility Vehicle. Unmatched performance meets everyday usability.</p>
+              <p className="body-md showcase-desc">The world&apos;s first Super Sport Utility Vehicle. Unmatched performance meets everyday usability.</p>
               <div className="showcase-price">
                 <span className="showcase-price-val" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(28px, 4vw, 40px)", color: "var(--accent)" }}>$1,599</span>
                 <span style={{ fontSize: "13px", color: "var(--text-muted)", fontFamily: "var(--font-body)", marginLeft: "4px" }}>/ day</span>
@@ -211,7 +211,7 @@ export default function Home() {
           <div className="contact-strip-grid">
             <div className="contact-info-item">
               <div className="contact-info-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
               </div>
               <div>
                 <div className="contact-info-label">Location</div>
@@ -220,7 +220,7 @@ export default function Home() {
             </div>
             <div className="contact-info-item">
               <div className="contact-info-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.9a16 16 0 006.18 6.18l1.27-.52a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" /></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.9a16 16 0 006.18 6.18l1.27-.52a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" /></svg>
               </div>
               <div>
                 <div className="contact-info-label">Phone</div>
@@ -229,7 +229,7 @@ export default function Home() {
             </div>
             <div className="contact-info-item">
               <div className="contact-info-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
               </div>
               <div>
                 <div className="contact-info-label">Email</div>
@@ -238,7 +238,7 @@ export default function Home() {
             </div>
             <div className="contact-info-item">
               <div className="contact-info-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
               </div>
               <div>
                 <div className="contact-info-label">Hours</div>
