@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="shortcut icon" href="./favicon.svg">
+  <title>Fleet — Euro LLC</title>
+  <meta name="description" content="Euro LLC fleet — sedans, SUVs, minivans, and luxury vehicles for rent in St. Petersburg, Tampa, and Clearwater, Florida.">
+  <meta property="og:title" content="Fleet — Euro LLC">
+  <meta property="og:description" content="Browse our full fleet of comfort, family, and luxury vehicles for rent in Florida.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.eurorentalcarsllc.com/fleet.html">
+  <meta property="og:image" content="https://www.eurorentalcarsllc.com/lamborghini_urus.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.eurorentalcarsllc.com/lamborghini_urus.jpg">
+  <link rel="canonical" href="https://www.eurorentalcarsllc.com/fleet.html">
+  <link rel="stylesheet" href="./css/styles.css">
+  <style>
+    .fleet-showcase-image {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      margin: 48px 0;
+    }
+    .fleet-showcase-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .fleet-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin: 48px 0;
+    }
+    .fleet-info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+    .fleet-info-card h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .fleet-info-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    @media (max-width: 640px) {
+      .fleet-info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Euro LLC — Home">
+    <svg viewBox="0 0 200 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polygon points="8,22 16,8 24,22 16,36" fill="#CDFF00"/>
+      <text x="32" y="17" font-family="'Bebas Neue',sans-serif" font-size="20" fill="#CDFF00" letter-spacing="2">EURO LLC</text>
+      <text x="32" y="35" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#FFFFFF" letter-spacing="3">LUXURY RENTAL AGENCY</text>
+    </svg>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fleet.html" class="active">Fleet</a></li>
+    <li><a href="exotic-fleet.html">Exotic Fleet</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="policy.html">Policy</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="booking.html" class="btn btn-accent">Book Now</a>
+  </div>
+  <button class="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="fleet.html">Fleet</a>
+  <a href="exotic-fleet.html">Exotic Fleet</a>
+  <a href="programs.html">Programs</a>
+  <a href="policy.html">Policy</a>
+  <a href="contact.html">Contact</a>
+  <a href="booking.html" class="btn btn-accent" style="border-radius:9999px;">Book Now</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" aria-labelledby="fleet-heading">
+  <div class="page-hero-bg" aria-hidden="true">
+    <img src="./mercedes_s.jpg" alt="" loading="eager" decoding="async">
+  </div>
+  <div class="container page-hero-content">
+    <div class="section-label fade-up">Our Vehicles</div>
+    <h1 class="display-lg fade-up stagger-1" id="fleet-heading">Our Fleet</h1>
+    <p class="body-lg fade-up stagger-2">From comfort to luxury — find the perfect ride for every occasion.</p>
+  </div>
+</section>
+
+<!-- FLEET CONTENT -->
+<section class="section-pad" aria-labelledby="fleet-desc-heading">
+  <div class="container">
+
+    <!-- Description -->
+    <div style="max-width:760px;" class="fade-up">
+      <div class="section-label">About Our Fleet</div>
+      <h2 class="display-sm fade-up stagger-1" id="fleet-desc-heading">Every Occasion, Every Budget</h2>
+      <p class="body-lg fade-up stagger-2" style="margin-top:20px;">
+        Euro Rental Cars accommodates medium size cars, sedans, family size cars, full size minivan rentals, and luxury vehicles. Comfort, convenience, and quality service — you'll get all that and more when you rent a vehicle from Euro Rental Cars.
+      </p>
+    </div>
+
+    <!-- Mercedes showcase -->
+    <div class="fleet-showcase-image fade-up" style="margin-top:48px;">
+      <img src="./mercedes_s.jpg" alt="Mercedes S-Class luxury sedan — available for rental" loading="lazy" decoding="async">
+    </div>
+
+    <!-- Info cards -->
+    <div class="fleet-info-grid">
+      <!-- Membership -->
+      <div class="membership-card fade-up">
+        <div class="membership-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Private Club
+        </div>
+        <h3 class="display-sm" style="margin-bottom:12px;">Black Ruby Membership Club</h3>
+        <p class="body-md">Don't forget to ask about our private <strong style="color:var(--text-primary);">Black Ruby Membership Club</strong> — prestige vehicles and exclusive locations available to members only.</p>
+        <a href="contact.html" class="btn btn-accent" style="margin-top:24px;">Inquire Now</a>
+      </div>
+      <!-- Booking info -->
+      <div class="fleet-info-card fade-up stagger-2">
+        <div class="section-label" style="margin-bottom:12px;">Booking Policy</div>
+        <h3>Reservation Information</h3>
+        <p>All rental bookings are on a first come, first served basis, unless you make a reservation <strong style="color:var(--text-primary);">2 days prior</strong> to your pick-up date with a non-refundable deposit.</p>
+        <a href="booking.html" class="btn btn-accent" style="margin-top:24px;">Reserve Now</a>
+      </div>
+    </div>
+
+    <!-- Exotic fleet teaser -->
+    <div style="margin-top:40px;padding:48px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center;" class="fade-up">
+      <div class="section-label" style="justify-content:center;margin-bottom:16px;">Premium Collection</div>
+      <h2 class="display-md" style="margin-bottom:16px;">Exotic Fleet</h2>
+      <p class="body-lg" style="max-width:560px;margin:0 auto 32px;">Explore our premium exotic collection — Lamborghini, Ferrari, McLaren, Bentley and more. From $349 to $3,499/day.</p>
+      <a href="exotic-fleet.html" class="btn btn-accent">
+        Explore Exotic Fleet
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" aria-label="Euro LLC — Home">
+          <svg viewBox="0 0 200 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <polygon points="8,22 16,8 24,22 16,36" fill="#CDFF00"/>
+            <text x="32" y="17" font-family="'Bebas Neue',sans-serif" font-size="20" fill="#CDFF00" letter-spacing="2">EURO LLC</text>
+            <text x="32" y="35" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#FFFFFF" letter-spacing="3">LUXURY RENTAL AGENCY</text>
+          </svg>
+        </a>
+        <p>Florida's premier exotic and luxury car rental experience. Serving St. Petersburg, Tampa, Clearwater, and Palmetto.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/libertyrentalcars" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="fleet.html">Fleet</a></li>
+          <li><a href="exotic-fleet.html">Exotic Fleet</a></li>
+          <li><a href="booking.html">Book Now</a></li>
+          <li><a href="programs.html">Programs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="fleet.html">Reservations</a></li>
+          <li><a href="exotic-fleet.html">Vehicles</a></li>
+          <li><a href="programs.html">Promotions</a></li>
+          <li><a href="contact.html">Customer Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:mailroom@eurorentalcarsllc.com">mailroom@eurorentalcarsllc.com</a></li>
+          <li><a href="tel:+17276253116">+1 (727) 625-3116</a></li>
+          <li><a href="contact.html">360 Central Ave Suite 800<br>St. Petersburg, FL 33701</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Euro LLC. All Rights Reserved. &nbsp;|&nbsp; <a href="policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="policy.html">Terms &amp; Conditions</a></p>
+      <a href="#" class="back-to-top" aria-label="Back to top">
+        Back to top
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="credit-bar">Created with <span class="credit-heart">❤</span> at <a href="https://creativelygrow.com" target="_blank" rel="noopener noreferrer" class="credit-link">Creatively Grow</a></div>
+</footer>
+
+<script src="./js/main.js"></script>
+</body>
+</html>
