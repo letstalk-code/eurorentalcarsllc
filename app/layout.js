@@ -1,4 +1,4 @@
-import "@/public/css/styles.css";
+import "./globals.css";
 
 export const metadata = {
   title: "Euro LLC — Rent the Luxury. Own the Thrill.",
