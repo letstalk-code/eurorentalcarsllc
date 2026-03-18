@@ -121,7 +121,7 @@ module.exports = async (req, res) => {
           html       : emailHtml,
           subject    : 'Reservation Request Received — Euro LLC',
           emailTo    : email,
-          emailFrom  : 'mailroom@eurorentalcarsllc.com',
+          emailFrom  : 'mailroom@eurollcluxury.com',
         }),
       });
 
