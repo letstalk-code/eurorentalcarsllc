@@ -1,0 +1,11 @@
+{
+  "redirects": [
+    { "source": "/index.html",     "destination": "/",              "permanent": true },
+    { "source": "/booking.html",   "destination": "/booking",       "permanent": true },
+    { "source": "/contact.html",   "destination": "/contact",       "permanent": true },
+    { "source": "/exotic-fleet.html", "destination": "/exotic-fleet", "permanent": true },
+    { "source": "/fleet.html",     "destination": "/fleet",         "permanent": true },
+    { "source": "/policy.html",    "destination": "/policy",        "permanent": true },
+    { "source": "/programs.html",  "destination": "/programs",      "permanent": true }
+  ]
+}
