@@ -259,9 +259,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   inset: 0;
   z-index: 999;
   background: var(--bg-primary);
-  padding: 100px var(--container-px) 40px;
+  padding: 80px var(--container-px) 40px;
   flex-direction: column;
   gap: 8px;
+  overflow-y: auto;
 }
 .nav-mobile.open { display: flex; }
 .nav-mobile a {
@@ -847,6 +848,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: border-color var(--dur-fast);
   outline: none;
   -webkit-appearance: none;
+  appearance: none;
 }
 .form-input::placeholder,
 .form-textarea::placeholder { color: var(--text-muted); }
