@@ -106,7 +106,7 @@ module.exports = async (req, res) => {
             <p style="color:#ccc;margin:6px 0;font-size:14px;"><strong style="color:#fff;">Return Date:</strong> ${returnDate || 'N/A'}</p>
             <p style="color:#ccc;margin:6px 0;font-size:14px;"><strong style="color:#fff;">Pick-Up Location:</strong> ${pickupLocation || 'N/A'}</p>
           </div>
-          <p style="color:#ccc;line-height:1.7;">Questions? Call or text us at <a href="tel:+17276253116" style="color:#CDFF00;text-decoration:none;">+1 (727) 625-3116</a>.</p>
+          <p style="color:#ccc;line-height:1.7;">Questions? Call or text us at <a href="tel:+17274349258" style="color:#CDFF00;text-decoration:none;">+1 (727) 434-9258</a>.</p>
           <hr style="border:none;border-top:1px solid #222;margin:32px 0;">
           <p style="color:#444;font-size:12px;text-align:center;margin:0;">Euro LLC · 360 Central Ave Suite 800 · St. Petersburg, FL 33701</p>
         </div>
