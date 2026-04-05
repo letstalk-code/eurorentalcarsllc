@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="shortcut icon" href="./favicon.svg">
+  <title>Private Jet Charter — Euro LLC</title>
+  <meta name="description" content="Book private jet flights anywhere in the United States. Domestic and international private jet charter — Euro LLC.">
+  <meta property="og:title" content="Private Jet Charter — Euro LLC">
+  <meta property="og:description" content="Book private jet flights. Domestic and international charter flights with luxury ground transportation.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.eurollcluxury.com/jets.html">
+  <meta property="og:image" content="https://www.eurollcluxury.com/lamborghini_urus.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://www.eurollcluxury.com/jets.html">
+  <link rel="stylesheet" href="./css/styles.css">
+  <style>
+    /* Override overflow so position:sticky works */
+    html, body { overflow-x: clip !important; }
+
+    /* ── Sticky Hero Section ──
+       Tall container: video sticks while you scroll through it.
+       Booking form appears BELOW after scrolling through. */
+    .jet-hero-section {
+      position: relative;
+      height: 280vh; /* more scroll distance = slower video playback */
+    }
+    .jet-hero {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+    }
+    /* Mobile: shorter sticky section + widen video so cars are larger */
+    @media (max-width: 768px) {
+      .jet-hero-section { height: 200vh; }
+      .jet-hero { height: 70vh; min-height: 420px; background: #0A0A0A; }
+      .jet-hero video {
+        transform: scale(1.45);
+      }
+    }
+    .jet-hero video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      background: #0A0A0A;
+      -webkit-mask-image:
+        linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%),
+        linear-gradient(to right,  transparent 0%, #000 18%, #000 82%, transparent 100%);
+      -webkit-mask-composite: source-in;
+              mask-image:
+        linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%),
+        linear-gradient(to right,  transparent 0%, #000 18%, #000 82%, transparent 100%);
+              mask-composite: intersect;
+    }
+    .jet-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(10,10,10,0.3) 0%,
+        rgba(10,10,10,0.1) 40%,
+        rgba(10,10,10,0.55) 80%,
+        rgba(10,10,10,0.95) 100%
+      );
+    }
+    /* unused — glass is now on the content container */
+    .jet-hero-glass { display: none; }
+    .jet-hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 2;
+    }
+    .jet-hero-content-inner {
+      background: rgba(10, 10, 10, 0.6);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 4px;
+      padding: 36px 40px;
+      width: fit-content;
+      max-width: 88%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @media (max-width: 640px) {
+      .jet-hero-content-inner { padding: 32px 24px; }
+    }
+    .jet-hero-content h1 {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8vw, 110px);
+      line-height: 0.95;
+      letter-spacing: 0.03em;
+      margin-bottom: 16px;
+    }
+    .jet-hero-content h1 em {
+      color: var(--accent);
+      font-style: normal;
+    }
+    .jet-hero-content .hero-sub {
+      font-size: clamp(14px, 2vw, 18px);
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+    .jet-hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── Booking form appears after sticky section ends ── */
+    .jet-content {
+      position: relative;
+      background: var(--bg-primary);
+    }
+
+    /* ── Booking Layout ── */
+    .jet-booking-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 1024px) {
+      .jet-booking-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ── Flight Type Toggle ── */
+    .flight-toggle {
+      display: flex;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 4px;
+      margin-bottom: 32px;
+      max-width: 340px;
+    }
+    .flight-toggle button {
+      flex: 1;
+      padding: 12px 24px;
+      font-family: var(--font-display);
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      border-radius: var(--radius-full);
+      transition: all 0.3s var(--ease-out);
+    }
+    .flight-toggle button.active {
+      background: var(--accent);
+      color: #0A0A0A;
+    }
+
+    /* ── Trip Type Toggle ── */
+    .trip-toggle {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .trip-toggle button {
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: all 0.3s var(--ease-out);
+    }
+    .trip-toggle button.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    /* ── Return Fields ── */
+    .return-fields {
+      display: none;
+    }
+    .return-fields.visible {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .return-fields.visible { grid-template-columns: 1fr; }
+    }
+
+    /* ── Form Card ── */
+    .jet-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+    }
+    @media (max-width: 640px) { .jet-form-card { padding: 28px 20px; } }
+
+    .jet-form-card h2 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+    .jet-form-card .subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 36px;
+    }
+
+    /* ── Payment Section ── */
+    .payment-section {
+      display: none;
+    }
+    .payment-section.visible {
+      display: block;
+    }
+    .accepted-cards {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .accepted-cards .card-icon {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+    }
+    #card-element {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      transition: border-color 0.2s ease;
+    }
+    #card-element.StripeElement--focus {
+      border-color: var(--accent);
+    }
+
+    /* ── Form fields (reuse booking patterns) ── */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .form-group label .req { color: var(--accent); margin-left: 2px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text-muted); }
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    .form-group select option { background: var(--bg-elevated); color: var(--text-primary); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+    .form-section-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .form-check input[type="checkbox"] {
+      width: 18px; height: 18px; min-width: 18px;
+      accent-color: var(--accent);
+      margin-top: 1px; cursor: pointer;
+    }
+    .form-check label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      cursor: pointer;
+    }
+    .form-check label a { color: var(--accent); text-decoration: none; }
+    .form-check label a:hover { text-decoration: underline; }
+    .btn-submit {
+      width: 100%;
+      padding: 18px;
+      font-size: 16px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    /* ── Success State ── */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .form-success .success-icon {
+      width: 64px; height: 64px;
+      background: var(--accent-dim);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .form-success p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ── Sidebar ── */
+    .jet-sidebar {
+      position: sticky;
+      top: 100px;
+    }
+    .jet-info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 16px;
+    }
+    .jet-info-card h4 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .jet-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .jet-info-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .jet-info-item svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+    .jet-info-item p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .jet-info-item p strong {
+      display: block;
+      color: var(--text-primary);
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Euro LLC — Home">
+    <svg viewBox="0 0 200 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polygon points="8,22 16,8 24,22 16,36" fill="#CDFF00"/>
+      <text x="32" y="17" font-family="'Bebas Neue',sans-serif" font-size="20" fill="#CDFF00" letter-spacing="2">EURO LLC</text>
+      <text x="32" y="35" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#FFFFFF" letter-spacing="3">LUXURY RENTAL AGENCY</text>
+    </svg>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fleet.html">Fleet</a></li>
+    <li><a href="exotic-fleet.html">Exotic Fleet</a></li>
+    <li><a href="jets.html" class="active">Jets</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="policy.html">Policy</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="booking.html" class="btn btn-accent">Book Now</a>
+  </div>
+  <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="fleet.html">Fleet</a>
+  <a href="exotic-fleet.html">Exotic Fleet</a>
+  <a href="jets.html" class="active">Jets</a>
+  <a href="programs.html">Programs</a>
+  <a href="policy.html">Policy</a>
+  <a href="contact.html">Contact</a>
+  <a href="booking.html" class="btn btn-accent" style="border-radius:9999px;">Book Now</a>
+</nav>
+
+<!-- ============================
+     HERO — Sticky Video
+     ============================ -->
+<!-- Sticky hero section: video sticks while you scroll, booking form appears after -->
+<div class="jet-hero-section">
+  <section class="jet-hero" aria-label="Private Jet Charter">
+    <video id="jet-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="./jet_hero_video_v3_frontdoor.mp4" type="video/mp4">
+    </video>
+    <div class="jet-hero-overlay" aria-hidden="true"></div>
+    <div class="jet-hero-glass" aria-hidden="true"></div>
+    <div class="jet-hero-content">
+      <div class="section-label fade-up">Private Aviation</div>
+      <h1 class="fade-up stagger-1">Fly <em>Private.</em><br>Anywhere.</h1>
+      <p class="hero-sub fade-up stagger-2">Luxury private jet charter flights across the United States and beyond</p>
+      <a href="#book-flight" class="btn btn-accent fade-up stagger-3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Book a Flight
+      </a>
+      <div class="jet-hero-scroll" aria-hidden="true">Scroll</div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================
+     BOOKING SECTION
+     ============================ -->
+<div class="jet-content">
+  <section class="section-pad" id="book-flight" aria-label="Book a private flight">
+    <div class="container">
+      <div class="jet-booking-layout">
+
+        <!-- FORM -->
+        <div class="jet-form-card fade-up">
+          <h2>Book Your Flight</h2>
+          <p class="subtitle">Select your flight details below. We'll confirm availability and send your itinerary within 24 hours.</p>
+
+          <form id="jet-form" novalidate>
+
+            <!-- Flight Type -->
+            <div class="form-section-label">Flight Type</div>
+            <div class="flight-toggle" role="group" aria-label="Flight type">
+              <button type="button" class="active" data-flight="domestic">Domestic</button>
+              <button type="button" data-flight="international">International</button>
+            </div>
+
+            <!-- Trip Type -->
+            <div class="trip-toggle" role="group" aria-label="Trip type">
+              <button type="button" class="active" data-trip="roundtrip">Round Trip</button>
+              <button type="button" data-trip="oneway">One Way</button>
+            </div>
+
+            <hr class="form-divider">
+
+            <!-- Departure Details -->
+            <div class="form-section-label">Departure Details</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="depart-from">Departing From <span class="req">*</span></label>
+                <input type="text" id="depart-from" name="depart_from" placeholder="City or Airport (e.g. Tampa, FL)" required>
+              </div>
+              <div class="form-group">
+                <label for="arrive-to">Arriving To <span class="req">*</span></label>
+                <input type="text" id="arrive-to" name="arrive_to" placeholder="City or Airport (e.g. New York, NY)" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="depart-date">Departure Date <span class="req">*</span></label>
+                <input type="date" id="depart-date" name="depart_date" required>
+              </div>
+              <div class="form-group">
+                <label for="depart-time">Departure Time <span class="req">*</span></label>
+                <input type="time" id="depart-time" name="depart_time" required>
+              </div>
+            </div>
+
+            <!-- Return Details (shown for round trip) -->
+            <div class="return-fields visible" id="return-fields">
+              <div class="form-group">
+                <label for="return-date">Return Date <span class="req">*</span></label>
+                <input type="date" id="return-date" name="return_date">
+              </div>
+              <div class="form-group">
+                <label for="return-time">Return Time <span class="req">*</span></label>
+                <input type="time" id="return-time" name="return_time">
+              </div>
+            </div>
+
+            <hr class="form-divider">
+
+            <!-- Passenger Information -->
+            <div class="form-section-label">Passenger Information</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="jet-first-name">First Name <span class="req">*</span></label>
+                <input type="text" id="jet-first-name" name="first_name" placeholder="John" required autocomplete="given-name">
+              </div>
+              <div class="form-group">
+                <label for="jet-last-name">Last Name <span class="req">*</span></label>
+                <input type="text" id="jet-last-name" name="last_name" placeholder="Smith" required autocomplete="family-name">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="jet-email">Email Address <span class="req">*</span></label>
+                <input type="email" id="jet-email" name="email" placeholder="john@example.com" required autocomplete="email">
+              </div>
+              <div class="form-group">
+                <label for="jet-phone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="jet-phone" name="phone" placeholder="+1 (727) 000-0000" required autocomplete="tel">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="passengers">Number of Passengers <span class="req">*</span></label>
+              <select id="passengers" name="passengers" required>
+                <option value="" disabled selected>Select passengers...</option>
+                <option value="1">1 Passenger</option>
+                <option value="2">2 Passengers</option>
+                <option value="3">3 Passengers</option>
+                <option value="4">4 Passengers</option>
+                <option value="5">5 Passengers</option>
+                <option value="6">6 Passengers</option>
+                <option value="7">7 Passengers</option>
+                <option value="8">8 Passengers</option>
+                <option value="9">9 Passengers</option>
+                <option value="10">10 Passengers</option>
+                <option value="11">11 Passengers</option>
+                <option value="12">12 Passengers</option>
+                <option value="13">13 Passengers</option>
+                <option value="14">14 Passengers</option>
+                <option value="15">15 Passengers</option>
+                <option value="16">16 Passengers</option>
+              </select>
+            </div>
+
+            <hr class="form-divider">
+
+            <!-- Special Requests -->
+            <div class="form-section-label">Special Requests</div>
+            <div class="form-group">
+              <label for="jet-notes">Additional Notes</label>
+              <textarea id="jet-notes" name="notes" placeholder="Any special requests, dietary needs, ground transportation, or questions..."></textarea>
+            </div>
+
+            <!-- Continue to Payment -->
+            <button type="button" id="continue-to-payment" class="btn btn-accent btn-submit">
+              Continue to Payment
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+
+          <!-- ── Payment Section ── -->
+          <div class="payment-section" id="payment-section">
+            <hr class="form-divider">
+            <div class="form-section-label">Payment Information</div>
+
+            <div class="accepted-cards">
+              <div class="card-icon">VISA</div>
+              <div class="card-icon">MASTERCARD</div>
+              <div class="card-icon">AMEX</div>
+              <div class="card-icon">DISCOVER</div>
+            </div>
+
+            <div class="form-group">
+              <label for="card-name">Name on Card <span class="req">*</span></label>
+              <input type="text" id="card-name" name="card_name" placeholder="John Smith" required autocomplete="cc-name">
+            </div>
+            <div class="form-group">
+              <label>Card Details <span class="req">*</span></label>
+              <div id="card-element"></div>
+            </div>
+
+            <hr class="form-divider">
+
+            <div class="form-check">
+              <input type="checkbox" id="become-member" name="become_member">
+              <label for="become-member">
+                Save my information and become a member for faster booking and exclusive offers.
+              </label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" id="jet-terms" name="agree_terms" required>
+              <label for="jet-terms">
+                I agree to the <a href="policy.html">Terms &amp; Conditions</a> and <a href="policy.html">Privacy Policy</a>. I understand that flight availability is subject to confirmation and a representative will contact me to finalize booking details. <span class="req">*</span>
+              </label>
+            </div>
+
+            <button type="button" id="book-flight-btn" class="btn btn-accent btn-submit">
+              Book Flight
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+          <!-- Success State -->
+          <div class="form-success" id="jet-success" aria-live="polite">
+            <div class="success-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#CDFF00" stroke-width="2.5" width="28" height="28" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <h3>Flight Request Confirmed!</h3>
+            <p>Thank you for your booking. You will receive a confirmation email shortly with your flight details, arrival instructions, and ground transportation information. Our team will contact you within 24 hours to finalize your itinerary.</p>
+            <a href="index.html" class="btn btn-accent" style="margin-top:24px;width:fit-content;margin-left:auto;margin-right:auto;">Back to Home</a>
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="jet-sidebar fade-up stagger-2">
+          <div class="jet-info-card">
+            <h4>Charter Details</h4>
+            <div class="jet-info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M21 16v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><path d="M3 16l2 4h14l2-4"/><path d="M12 2l3 8H9l3-8z"/></svg>
+              <p><strong>Private Fleet</strong>Access to a curated fleet of luxury private jets for any group size or destination.</p>
+            </div>
+            <div class="jet-info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              <p><strong>Flexible Scheduling</strong>Fly on your schedule. No layovers, no delays, no crowded terminals.</p>
+            </div>
+            <div class="jet-info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <p><strong>Secure & Discreet</strong>Complete privacy and confidentiality from booking to landing.</p>
+            </div>
+            <div class="jet-info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              <p><strong>Concierge Service</strong>Ground transportation, catering, and any special arrangements handled for you.</p>
+            </div>
+          </div>
+
+          <div class="jet-info-card">
+            <h4>Need Help?</h4>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:16px;">Our aviation team is available to assist with route planning, aircraft selection, and custom flight arrangements.</p>
+            <a href="tel:+17274349258" class="btn btn-outline" style="width:100%;justify-content:center;margin-bottom:10px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .81h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.11 8.5a16 16 0 006.35 6.35l1.05-1.05a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              +1 (727) 434-9258
+            </a>
+            <a href="contact.html" class="btn btn-ghost" style="width:100%;justify-content:center;">Send a Message</a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" aria-label="Euro LLC — Home">
+            <svg viewBox="0 0 200 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <polygon points="8,22 16,8 24,22 16,36" fill="#CDFF00"/>
+              <text x="32" y="17" font-family="'Bebas Neue',sans-serif" font-size="20" fill="#CDFF00" letter-spacing="2">EURO LLC</text>
+              <text x="32" y="35" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#FFFFFF" letter-spacing="3">LUXURY RENTAL AGENCY</text>
+            </svg>
+          </a>
+          <p>Florida's premier exotic and luxury car rental experience. Serving St. Petersburg, Tampa, Clearwater, and Palmetto.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/libertyrentalcars" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="X (Twitter)">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="fleet.html">Fleet</a></li>
+            <li><a href="exotic-fleet.html">Exotic Fleet</a></li>
+            <li><a href="jets.html">Jets</a></li>
+            <li><a href="booking.html">Book Now</a></li>
+            <li><a href="programs.html">Programs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="fleet.html">Reservations</a></li>
+            <li><a href="exotic-fleet.html">Vehicles</a></li>
+            <li><a href="jets.html">Private Jets</a></li>
+            <li><a href="programs.html">Promotions</a></li>
+            <li><a href="contact.html">Customer Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:mailroom@eurollcluxury.com">mailroom@eurollcluxury.com</a></li>
+            <li><a href="tel:+17274349258">+1 (727) 434-9258</a></li>
+            <li><a href="contact.html">360 Central Ave Suite 800<br>St. Petersburg, FL 33701</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Euro LLC. All Rights Reserved. &nbsp;|&nbsp; <a href="policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="policy.html">Terms &amp; Conditions</a></p>
+        <a href="#" class="back-to-top" aria-label="Back to top">
+          Back to top
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="credit-bar">Created with <span class="credit-heart">&hearts;</span> at <a href="https://creativelygrow.com" target="_blank" rel="noopener noreferrer" class="credit-link">Creatively Grow</a></div>
+  </footer>
+</div>
+
+<script src="./js/main.js"></script>
+<script>
+// ── Scroll-driven video (desktop) / autoplay (mobile) ──
+(function() {
+  var video = document.getElementById('jet-video');
+  var section = document.querySelector('.jet-hero-section');
+  if (!video || !section) return;
+
+  var isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+    // Mobile: autoplay handles it via HTML attributes, nothing to do
+    return;
+  } else {
+    // Desktop: scroll-driven
+    video.pause();
+
+    function onScroll() {
+      var scrolled = window.pageYOffset - section.offsetTop;
+      var scrollRange = section.offsetHeight - window.innerHeight;
+      var progress = Math.max(0, Math.min(1, scrolled / scrollRange));
+      video.currentTime = progress * video.duration;
+    }
+
+    video.addEventListener('loadedmetadata', function() {
+      video.currentTime = 0;
+    });
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+})();
+</script>
+<script>
+(function() {
+  var form = document.getElementById('jet-form');
+  var paymentSection = document.getElementById('payment-section');
+  var success = document.getElementById('jet-success');
+  var continueBtn = document.getElementById('continue-to-payment');
+  var bookBtn = document.getElementById('book-flight-btn');
+
+  if (!form) return;
+
+  // ── Flight Type Toggle ──
+  var flightToggle = document.querySelector('.flight-toggle');
+  if (flightToggle) {
+    flightToggle.querySelectorAll('button').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        flightToggle.querySelectorAll('button').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+      });
+    });
+  }
+
+  // ── Trip Type Toggle ──
+  var tripToggle = document.querySelector('.trip-toggle');
+  var returnFields = document.getElementById('return-fields');
+  if (tripToggle && returnFields) {
+    tripToggle.querySelectorAll('button').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        tripToggle.querySelectorAll('button').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        if (btn.dataset.trip === 'roundtrip') {
+          returnFields.classList.add('visible');
+        } else {
+          returnFields.classList.remove('visible');
+        }
+      });
+    });
+  }
+
+  // ── Validate Fields ──
+  function validateRequired(container) {
+    var valid = true;
+    container.querySelectorAll('[required]').forEach(function(field) {
+      // Skip return fields if one-way
+      if (field.closest('.return-fields') && !returnFields.classList.contains('visible')) return;
+      if (field.type === 'checkbox' && !field.checked) {
+        valid = false;
+        field.closest('.form-check').style.outline = '1px solid #ff4d4d';
+        field.addEventListener('change', function() { field.closest('.form-check').style.outline = ''; }, { once: true });
+      } else if (field.type !== 'checkbox' && !field.value.trim()) {
+        valid = false;
+        field.style.borderColor = '#ff4d4d';
+        field.addEventListener('input', function() { field.style.borderColor = ''; }, { once: true });
+      }
+    });
+    return valid;
+  }
+
+  // ── Continue to Payment ──
+  continueBtn.addEventListener('click', function() {
+    if (!validateRequired(form)) {
+      var first = form.querySelector('[style*="ff4d4d"]');
+      if (first) first.focus();
+      return;
+    }
+    paymentSection.classList.add('visible');
+    continueBtn.style.display = 'none';
+    paymentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // ── Book Flight ──
+  bookBtn.addEventListener('click', function() {
+    // Validate payment fields
+    var termsBox = document.getElementById('jet-terms');
+    if (!termsBox.checked) {
+      termsBox.closest('.form-check').style.outline = '1px solid #ff4d4d';
+      termsBox.addEventListener('change', function() { termsBox.closest('.form-check').style.outline = ''; }, { once: true });
+      return;
+    }
+    var cardName = document.getElementById('card-name');
+    if (!cardName.value.trim()) {
+      cardName.style.borderColor = '#ff4d4d';
+      cardName.focus();
+      cardName.addEventListener('input', function() { cardName.style.borderColor = ''; }, { once: true });
+      return;
+    }
+
+    bookBtn.disabled = true;
+    bookBtn.textContent = 'Processing...';
+
+    // Gather payload
+    var activeFlightType = flightToggle.querySelector('.active');
+    var activeTripType = tripToggle.querySelector('.active');
+
+    var payload = {
+      flightType     : activeFlightType ? activeFlightType.dataset.flight : 'domestic',
+      tripType       : activeTripType ? activeTripType.dataset.trip : 'roundtrip',
+      departFrom     : form.depart_from.value.trim(),
+      arriveTo       : form.arrive_to.value.trim(),
+      departDate     : form.depart_date.value,
+      departTime     : form.depart_time.value,
+      returnDate     : form.return_date ? form.return_date.value : '',
+      returnTime     : form.return_time ? form.return_time.value : '',
+      firstName      : form.first_name.value.trim(),
+      lastName       : form.last_name.value.trim(),
+      email          : form.email.value.trim(),
+      phone          : form.phone.value.trim(),
+      passengers     : form.passengers.value,
+      notes          : form.notes ? form.notes.value.trim() : '',
+      becomeMember   : document.getElementById('become-member').checked,
+      source         : 'Website Jet Charter Booking'
+    };
+
+    fetch('/api/jet-booking', {
+      method  : 'POST',
+      headers : { 'Content-Type': 'application/json' },
+      body    : JSON.stringify(payload)
+    })
+    .then(function() {
+      form.style.display = 'none';
+      paymentSection.style.display = 'none';
+      success.style.display = 'block';
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    })
+    .catch(function() {
+      form.style.display = 'none';
+      paymentSection.style.display = 'none';
+      success.style.display = 'block';
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+})();
+</script>
+</body>
+</html>
