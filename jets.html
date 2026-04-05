@@ -92,7 +92,7 @@
     }
     /* Mobile: 16:9 hero with text centered over video */
     @media (max-width: 768px) {
-      .jet-hero-section { height: 200vh; }
+      .jet-hero-section { height: auto !important; }
       .jet-hero {
         position: relative !important;
         height: 90vw !important;
@@ -109,7 +109,8 @@
         -webkit-mask-image: none !important;
         mask-image: none !important;
       }
-      .jet-hero-overlay { background: rgba(0,0,0,0.55) !important; }
+      .jet-hero-overlay { background: rgba(0,0,0,0.25) !important; }
+      .jet-hero-scroll { display: none !important; }
       .jet-hero-content {
         position: absolute !important;
         inset: 0 !important;
