@@ -90,22 +90,39 @@
     @media (max-width: 640px) {
       .jet-hero-content-inner { padding: 32px 24px; }
     }
-    /* Mobile: show video in its natural 16:9 aspect at the top of the hero
-       (full desktop framing, edge-to-edge), with the text sitting below */
+    /* Mobile: stack video + text vertically so both cars show in full 16:9 */
     @media (max-width: 768px) {
       .jet-hero-section { height: 200vh; }
-      .jet-hero { height: auto !important; min-height: 0 !important; background: #0A0A0A; overflow: hidden; display: flex; flex-direction: column; }
+      .jet-hero {
+        position: static !important;
+        height: auto !important;
+        min-height: 0 !important;
+        background: #0A0A0A;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
       .jet-hero video {
         position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        height: auto !important;
+        top: auto !important; left: auto !important;
         width: 100% !important;
+        height: auto !important;
         object-fit: fill !important;
+        transform: scale(1.3) !important;
+        transform-origin: top center !important;
+        margin-bottom: calc((1.3 - 1) * 56.25vw) !important;
         -webkit-mask-image: none !important;
         mask-image: none !important;
       }
-      .jet-hero-content { position: relative !important; inset: auto !important; justify-content: center; padding: 32px 24px; }
+      .jet-hero-overlay { display: none !important; }
+      .jet-hero-content {
+        position: relative !important;
+        inset: auto !important;
+        justify-content: center;
+        padding: 32px 24px;
+        background: #0A0A0A;
+        z-index: auto !important;
+      }
     }
     .jet-hero-content h1 {
       font-family: var(--font-display);
