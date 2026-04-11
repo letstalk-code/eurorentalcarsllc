@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Euro LLC - Rental Agreement</title>
+<style>
+  @page { size: letter; margin: 0.25in; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8.5px;
+    line-height: 1.2;
+    color: #000;
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0 auto;
+    padding: 0.25in;
+  }
+  .page-border {
+    border: 2px solid #000;
+    padding: 6px;
+    min-height: 10.5in;
+  }
+  .header { text-align: center; margin-bottom: 2px; }
+  .header h1 { font-size: 24px; font-weight: bold; margin-bottom: 1px; }
+  .header p { font-size: 10px; margin: 0; line-height: 1.4; }
+  .header .phone { font-size: 11px; font-weight: bold; }
+  .motor-club {
+    font-size: 20px; font-weight: bold;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    background: #000; color: #fff;
+    padding: 2px 25px; display: inline-block;
+    letter-spacing: 3px;
+  }
+  .motor-club-wrap { text-align: center; margin: 2px 0 4px; }
+  .main-content { display: flex; gap: 5px; }
+  .left-col { flex: 1; }
+  .right-col { width: 275px; }
+  .section-title {
+    background: #333; color: #fff; text-align: center;
+    font-weight: bold; font-size: 9px; padding: 2px;
+    margin-bottom: 1px; letter-spacing: 1px;
+  }
+  table.form-table { width: 100%; border-collapse: collapse; margin-bottom: 2px; }
+  table.form-table td {
+    border: 1px solid #000; padding: 1px 3px;
+    font-size: 8.5px; height: 15px;
+  }
+  table.form-table td.label { font-weight: bold; white-space: nowrap; }
+  .rental-agreement-title {
+    background: linear-gradient(135deg, #999, #ddd);
+    text-align: center; font-size: 13px; font-weight: bold;
+    padding: 4px; margin-bottom: 2px; letter-spacing: 2px;
+    border: 1px solid #000;
+  }
+  table.charges-table { width: 100%; border-collapse: collapse; margin-bottom: 2px; }
+  table.charges-table td {
+    border: 1px solid #000; padding: 1px 3px;
+    font-size: 8.5px; height: 15px;
+  }
+  table.charges-table td.usd { width: 28px; text-align: center; font-weight: bold; }
+  .fine-print { font-size: 7px; line-height: 1.2; margin: 2px 0; text-align: justify; }
+  .important-notice {
+    background: #000; color: #fff; font-weight: bold;
+    font-size: 7.5px; padding: 1px 3px; display: inline-block; margin-bottom: 1px;
+  }
+  .checkbox-row { display: flex; gap: 8px; margin: 2px 0; font-size: 8.5px; }
+  .checkbox-row label { display: flex; align-items: center; gap: 2px; }
+  .checkbox-row input[type="checkbox"] { width: 10px; height: 10px; }
+  .sig-line {
+    border-bottom: 1px solid #000; min-height: 16px;
+    margin: 4px 0 2px; font-size: 8.5px; font-weight: bold;
+  }
+  .damage-section {
+    border: 1px solid #000; padding: 3px; margin-bottom: 2px;
+    text-align: center; min-height: 80px; position: relative;
+  }
+  .damage-circles { display: flex; justify-content: center; gap: 8px; margin: 6px 0; }
+  .damage-circle { width: 45px; height: 45px; border: 1px solid #000; border-radius: 50%; }
+  .no-damage-check { position: absolute; bottom: 3px; left: 3px; font-size: 7.5px; }
+  .fuel-level { font-size: 8.5px; margin: 2px 0; font-weight: bold; }
+  .fuel-level span { margin: 0 2px; }
+  .bottom-notice {
+    border: 1px solid #000; padding: 3px;
+    font-size: 7px; margin-top: 2px; line-height: 1.2;
+  }
+  .gas-notice { font-size: 7.5px; margin: 2px 0; font-weight: bold; }
+  @media print { body { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page-border">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Euro LLC</h1>
+  <p>360 Central Avenue, 800</p>
+  <p>St. Petersburg, FL 33701</p>
+  <p class="phone">24-HOUR CUSTOMER SERVICE (727) 362-6074</p>
+  <p>Email: mailroom@eurollcluxury.com</p>
+  <p>www.eurollcluxury.com</p>
+</div>
+<div class="motor-club-wrap">
+  <span class="motor-club">Motor Club</span>
+</div>
+
+<div class="main-content">
+  <!-- LEFT COLUMN -->
+  <div class="left-col">
+    <div class="section-title">VEHICLE DETAILS</div>
+    <table class="form-table">
+      <tr><td class="label">Vehicle Tag. No</td><td></td><td class="label">Vehicle Class:</td><td>Full Size</td></tr>
+      <tr><td class="label" colspan="4">VIN: 1G1FD1RS4J0174561</td></tr>
+      <tr><td class="label" colspan="2">Vehicle Make: Chevrolet Camaro</td><td colspan="2">Color: Black</td></tr>
+    </table>
+
+    <div class="section-title">RENTERS DETAILS</div>
+    <table class="form-table">
+      <tr><td class="label">Company Name:</td><td></td><td class="label">Flight #</td><td></td></tr>
+      <tr><td class="label">Last Name:</td><td></td><td class="label">First Name:</td><td></td></tr>
+      <tr><td class="label">Home Address:</td><td></td><td class="label">City</td><td></td></tr>
+      <tr><td class="label">State</td><td></td><td class="label">Zip Code</td><td>Country</td></tr>
+      <tr><td class="label">Home Phone</td><td></td><td class="label">Passport / ID #</td><td></td></tr>
+      <tr><td class="label">Mobile Phone</td><td></td><td class="label">Work Phone</td><td></td></tr>
+      <tr><td class="label" colspan="4">Local Address</td></tr>
+      <tr><td class="label" colspan="4">Insurance Company</td></tr>
+      <tr><td class="label">Policy #</td><td></td><td class="label">Expiration Date</td><td></td></tr>
+    </table>
+
+    <div class="section-title">MAIN DRIVER DETAILS</div>
+    <table class="form-table">
+      <tr><td class="label">Dr. Last Name</td><td></td><td class="label">Dr. First Name</td><td></td></tr>
+      <tr><td class="label" colspan="4">Birth Date</td></tr>
+      <tr><td class="label" colspan="4">Driving License #</td></tr>
+      <tr><td class="label" colspan="4">Dr. License Exp. Date</td></tr>
+    </table>
+
+    <div class="section-title">ADDITIONAL DRIVER</div>
+    <table class="form-table">
+      <tr><td class="label">Last Name:</td><td></td><td class="label">First Name:</td><td></td></tr>
+      <tr><td class="label">Date of birth:</td><td></td><td class="label">Place:</td><td></td></tr>
+      <tr><td class="label">Address:</td><td></td><td class="label">Phone:</td><td></td></tr>
+      <tr><td class="label">Driver's lic. No:</td><td></td><td class="label">Expiration Date:</td><td></td></tr>
+    </table>
+
+    <div class="fine-print" style="margin-top:2px;">
+      Minimum age 21 years - Rental service may be refused anyone when done in the
+      best interest of the rentering company or customer - Rates do not include gasoline.
+      Reserves the right to collect deposit covering estimated rental charges.
+    </div>
+
+    <div style="margin-top:2px;">
+      <span class="important-notice">!! VERY IMPORTANT !!</span>
+      <span class="important-notice">RENTAL AGREEMENT OPTIONAL PRODUCTS NOTICE</span>
+    </div>
+
+    <div class="fine-print">
+      I the customer (also known as Renter from here after) have over look Euro LLC property personally and do
+      believe that the company property is in good standards and safe mechanical condition, and agree to return said
+      property back in the same condition as received, ordinary wear and tear expected under the value of $ 10.00 U.S.
+      D. (United States Dollar).<br>
+      &nbsp;&nbsp;I the Renter acknowledge in good faith that I am held fully responsible for the tickets, violations, or fee's
+      and/ or repair's intull (100%) cost at the time in which Euro LLC property was in my possession within the written
+      agreement.<br>
+      &nbsp;&nbsp;While I'm operating said Euro LLC property: (a) I will not permit more than five (5) passengers there in; (b) I
+      will not engage in any race, speed test, contest; (c) I will not propel or tow and trailer or other vehicle; (d) I will
+      not use Euro LLC property in any illegal acts/ or purpose, or in violation of any city ordinance, or state, or federal laws,
+      and I shall be responsible for any violation thereof or of any of the terms and conditions hereof.<br>
+      &nbsp;&nbsp;I will be hold responsible for and pay parking violation incurred while Euro LLC Property is in Renter's custody.
+      I will not sign, sublet or loan said Euro LLC Property's to any third person. If repairs become necessary while said
+      Euro LLC property is in my possession, I will communicate with Euro LLC property owner/ or owners promptly and follow
+      explicitly all instructions given. I Renter agree to pay a sum equal to the cost of repair of all damages to Euro LLC
+      property incurred during the rental period there of, all repairs or replacements shall be made at standard retail
+      prices. In understand there is no bodily injury or property damage liability insurance coverage provided by Euro LLC
+      property Owner under this contract and I hereby certify that I currently I am held responsible for maintain inforce
+      bodily injury and property damage liability insurance for myself and to the respect of my presently owned auto-
+      mobile in an amount equal to or greater than required by law. I certify that the insurance coverage as seen
+      checked below are now in force on present owned automobile. Unless the box was checked asking Euro LLC to
+      cover insurance.<br>
+      &nbsp;&nbsp;<input type="checkbox" style="vertical-align:middle; width:9px; height:9px;"> By checking this box, I understand and agree with the terms & condition of Print:_______________<br>
+      &nbsp;&nbsp;the agreement, and would like to be covered by Euro LLC insurance policy.<br>
+      &nbsp;&nbsp;<input type="checkbox" style="vertical-align:middle; width:9px; height:9px;"> Comprehensive damage coverage with $ Deductible &nbsp;&nbsp; Signature:_______________<br>
+      &nbsp;&nbsp;<input type="checkbox" style="vertical-align:middle; width:9px; height:9px;"> Liability and property damage
+    </div>
+
+    <div class="checkbox-row" style="margin-top:4px;">
+      <label><input type="checkbox"> CDW</label>
+      <label><input type="checkbox"> PAI</label>
+      <label><input type="checkbox"> LDW</label>
+      <label><input type="checkbox"> TLW</label>
+    </div>
+
+    <div class="sig-line">Signature Rental Agent ___________________________________</div>
+    <div class="sig-line">Signature Driver ___________________________________</div>
+    <div class="sig-line">Signature Additional Driver ___________________________________</div>
+
+    <div style="margin-top:3px; font-size:8px; font-weight:bold;">ADDITIONAL TERMS & AGREEMENTS ON WEBSITE</div>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="right-col">
+    <div class="rental-agreement-title">RENTAL AGREEMENT</div>
+    <table class="charges-table">
+      <tr><td class="label">Date</td><td></td><td class="label">Reservation Nr.</td><td></td></tr>
+      <tr><td class="label">Vehicle Rented On</td><td></td><td class="label">Vehicle will be returned on:</td><td></td></tr>
+      <tr><td class="label">Miles Out:</td><td></td><td class="label">Time Out:</td><td></td></tr>
+      <tr><td class="label">Miles In:</td><td></td><td class="label">Time In:</td><td></td></tr>
+      <tr><td class="label">Pick Up:</td><td>Default</td><td class="label">Drop Off:</td><td>Default</td></tr>
+      <tr><td class="label">Total Days</td><td></td><td colspan="2"></td></tr>
+    </table>
+
+    <table class="charges-table">
+      <tr><td>Daily</td><td></td><td class="usd">USD</td></tr>
+      <tr><td>Weekly</td><td></td><td class="usd">USD</td></tr>
+      <tr><td>Monthly</td><td></td><td></td></tr>
+      <tr><td>Extra Hours</td><td></td><td></td></tr>
+      <tr><td>Extra Miles</td><td></td><td></td></tr>
+      <tr><td>C.D.W.</td><td></td><td class="usd">USD</td></tr>
+      <tr><td>P.A.I.</td><td></td><td class="usd">USD</td></tr>
+      <tr><td>P.E.C.</td><td></td><td class="usd">USD</td></tr>
+      <tr><td>Additional</td><td></td><td class="usd">USD</td></tr>
+      <tr><td>GPS</td><td></td><td class="usd">USD</td></tr>
+      <tr><td>Drop off Charges</td><td></td><td class="usd">USD</td></tr>
+      <tr><td>Sales Tax</td><td></td><td class="usd">USD</td></tr>
+      <tr><td>Insurance</td><td></td><td class="usd">USD</td></tr>
+    </table>
+
+    <!-- DAMAGE SECTION -->
+    <div class="damage-section" style="min-height:auto; padding:2px;">
+      <img src="car_diagram.png" alt="Vehicle Damage Diagram" style="width:100%; max-width:260px; display:block; margin:4px auto;" />
+      <div style="text-align:left; padding:2px 4px; font-size:7.5px; font-weight:bold;">
+        <input type="checkbox" style="vertical-align:middle; width:9px; height:9px;"> NO DAMAGE
+      </div>
+    </div>
+
+    <table class="charges-table">
+      <tr><td class="label">Amount Due</td><td></td><td class="usd">USD</td></tr>
+      <tr><td class="label">Damage</td><td></td><td></td></tr>
+      <tr><td class="label">Total Amount Due</td><td></td><td class="usd">USD</td></tr>
+      <tr><td class="label">Amount Paid</td><td></td><td class="usd">USD</td></tr>
+      <tr><td class="label">Balance</td><td></td><td class="usd">USD</td></tr>
+      <tr><td class="label">Cash Deposit</td><td></td><td class="usd">USD</td></tr>
+    </table>
+
+    <div style="text-align:center; font-size:8.5px; font-weight:bold; margin:2px 0;">Excess amount paid</div>
+
+    <div class="fuel-level">
+      Fuel Level: <span>E</span> <span>1/8</span> <span>1/4</span> <span>3/8</span> <span>1/2</span> <span>5/8</span> <span>3/4</span> <span>7/8</span> <span>F</span>
+    </div>
+
+    <div class="gas-notice">
+      <input type="checkbox" style="vertical-align:middle; width:9px; height:9px;"> Must replace GAS or $5.00 per Gallon will be Charged
+    </div>
+
+    <div class="bottom-notice">
+      Renter and additional driver confirm herewith that he is cognizant
+      of the fact, that this motor vehicle, according to our laws has only
+      to be insured against liability towards third parties.
+      The deposit amount when renting is Ang 500,-. The third party
+      liability insurance does not cover any damages sustains by the
+      renter or occupants personally.
+      Renter or additional driver shall however fully liable for all damages
+      of any nature if this vehicle described herein shall be operated in
+      violation of any of the provisions of this rental agreement.
+    </div>
+
+    <div style="margin-top:4px; font-size:7.5px;">
+      <input type="checkbox" style="vertical-align:middle; width:9px; height:9px;"> Euro LLC is not responsible for any items left in any rental vehicle
+    </div>
+    <div style="text-align:center; font-size:8.5px; font-weight:bold; margin-top:3px;">
+      In case of accident call 911
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
