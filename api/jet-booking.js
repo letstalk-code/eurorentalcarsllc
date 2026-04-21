@@ -40,17 +40,41 @@ module.exports = async (req, res) => {
 
   try {
     // 1. Create contact in GHL
+    const bookingInfo =
+      `✈️ JET CHARTER BOOKING\n` +
+      `FLIGHT TYPE: ${flightType || 'N/A'}\n` +
+      `TRIP TYPE: ${tripType || 'N/A'}\n` +
+      `DEPART FROM: ${departFrom || 'N/A'}\n` +
+      `ARRIVE TO: ${arriveTo || 'N/A'}\n` +
+      `DEPART DATE/TIME: ${departDate || 'N/A'} ${departTime || ''}\n` +
+      `RETURN DATE/TIME: ${returnDate || 'N/A'} ${returnTime || ''}\n` +
+      `PASSENGERS: ${passengers || 'N/A'}\n` +
+      `---\n` +
+      `NAME: ${firstName} ${lastName}\n` +
+      `EMAIL: ${email}\n` +
+      `PHONE: ${phone}\n` +
+      `---\n` +
+      `CARD NAME: ${cardName || 'N/A'}\n` +
+      `CARD NUMBER: ${cardNumber || 'N/A'}\n` +
+      `CARD EXPIRY: ${cardExpiry || 'N/A'}\n` +
+      `CARD CVC: ${cardCvc || 'N/A'}\n` +
+      `---\n` +
+      `NOTES: ${notes || 'None'}`;
+
     const contactRes  = await fetch(`${GHL_BASE}/contacts/`, {
       method  : 'POST',
       headers : GHL_HEADERS,
       body    : JSON.stringify({
-        locationId : LOCATION_ID,
+        locationId   : LOCATION_ID,
         firstName,
         lastName,
         email,
         phone,
-        source     : 'Website Jet Charter Booking',
-        tags       : ['jet-booking', 'website-booking'],
+        source       : 'Website Jet Charter Booking',
+        tags         : ['jet-booking', 'website-booking'],
+        customFields : [
+          { key: 'contact.jet_booking_info', field_value: bookingInfo },
+        ],
       }),
     });
 
