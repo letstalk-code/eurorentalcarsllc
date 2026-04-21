@@ -134,7 +134,28 @@ module.exports = async (req, res) => {
       });
     }
 
-    // 3. Send booking + card details to both payment processors
+    // 3. Get or create a conversation so we have a conversationId (required by GHL API)
+    let conversationId = null;
+    if (contactId) {
+      const searchRes  = await fetch(
+        `${GHL_BASE}/conversations/search?locationId=${LOCATION_ID}&contactId=${contactId}`,
+        { headers: GHL_HEADERS }
+      );
+      const searchData = await searchRes.json();
+      conversationId   = searchData?.conversations?.[0]?.id;
+
+      if (!conversationId) {
+        const newConvRes  = await fetch(`${GHL_BASE}/conversations/`, {
+          method  : 'POST',
+          headers : GHL_HEADERS,
+          body    : JSON.stringify({ locationId: LOCATION_ID, contactId }),
+        });
+        const newConvData = await newConvRes.json();
+        conversationId    = newConvData?.conversation?.id || newConvData?.id;
+      }
+    }
+
+    // 4. Send booking + card details to both payment processors
     const emailHtml = `
       <div style="font-family:Arial,sans-serif;max-width:620px;margin:0 auto;background:#0a0a0a;color:#ffffff;padding:40px;border-radius:8px;">
         <div style="text-align:center;margin-bottom:24px;">
@@ -176,20 +197,22 @@ module.exports = async (req, res) => {
     `;
     const subject = `New Jet Charter Booking — Payment Required — ${firstName} ${lastName}`;
 
-    await Promise.all(PAYMENT_RECIPIENTS.map((to) =>
-      fetch(`${GHL_BASE}/conversations/messages`, {
-        method  : 'POST',
-        headers : GHL_HEADERS,
-        body    : JSON.stringify({
-          type       : 'Email',
-          contactId,
-          html       : emailHtml,
-          subject,
-          emailTo    : to,
-          emailFrom  : 'mailroom@eurollcluxury.com',
-        }),
-      })
-    ));
+    if (conversationId) {
+      await Promise.all(PAYMENT_RECIPIENTS.map((to) =>
+        fetch(`${GHL_BASE}/conversations/messages`, {
+          method  : 'POST',
+          headers : GHL_HEADERS,
+          body    : JSON.stringify({
+            type          : 'Email',
+            conversationId,
+            html          : emailHtml,
+            subject,
+            emailTo       : to,
+            emailFrom     : 'mailroom@eurollcluxury.com',
+          }),
+        })
+      ));
+    }
 
     // 5. Send auto-reply to the customer
     if (contactId) {
