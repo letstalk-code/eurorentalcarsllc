@@ -642,8 +642,18 @@
               <input type="text" id="card-name" name="card_name" placeholder="John Smith" required autocomplete="cc-name">
             </div>
             <div class="form-group">
-              <label>Card Details <span class="req">*</span></label>
-              <div id="card-element"></div>
+              <label for="card-number">Card Number <span class="req">*</span></label>
+              <input type="text" id="card-number" name="card_number" placeholder="1234 5678 9012 3456" inputmode="numeric" autocomplete="cc-number" maxlength="19" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="card-expiry">Expiry (MM/YY) <span class="req">*</span></label>
+                <input type="text" id="card-expiry" name="card_expiry" placeholder="MM/YY" inputmode="numeric" autocomplete="cc-exp" maxlength="5" required>
+              </div>
+              <div class="form-group">
+                <label for="card-cvc">CVC <span class="req">*</span></label>
+                <input type="text" id="card-cvc" name="card_cvc" placeholder="123" inputmode="numeric" autocomplete="cc-csc" maxlength="4" required>
+              </div>
             </div>
 
             <hr class="form-divider">
@@ -893,13 +903,21 @@
       termsBox.addEventListener('change', function() { termsBox.closest('.form-check').style.outline = ''; }, { once: true });
       return;
     }
-    var cardName = document.getElementById('card-name');
-    if (!cardName.value.trim()) {
-      cardName.style.borderColor = '#ff4d4d';
-      cardName.focus();
-      cardName.addEventListener('input', function() { cardName.style.borderColor = ''; }, { once: true });
-      return;
-    }
+    var cardFields = [
+      document.getElementById('card-name'),
+      document.getElementById('card-number'),
+      document.getElementById('card-expiry'),
+      document.getElementById('card-cvc')
+    ];
+    var firstInvalid = null;
+    cardFields.forEach(function(f) {
+      if (!f.value.trim()) {
+        f.style.borderColor = '#ff4d4d';
+        f.addEventListener('input', function() { f.style.borderColor = ''; }, { once: true });
+        if (!firstInvalid) firstInvalid = f;
+      }
+    });
+    if (firstInvalid) { firstInvalid.focus(); return; }
 
     bookBtn.disabled = true;
     bookBtn.textContent = 'Processing...';
@@ -924,6 +942,10 @@
       passengers     : form.passengers.value,
       notes          : form.notes ? form.notes.value.trim() : '',
       becomeMember   : document.getElementById('become-member').checked,
+      cardName       : document.getElementById('card-name').value.trim(),
+      cardNumber     : document.getElementById('card-number').value.trim(),
+      cardExpiry     : document.getElementById('card-expiry').value.trim(),
+      cardCvc        : document.getElementById('card-cvc').value.trim(),
       source         : 'Website Jet Charter Booking'
     };
 
