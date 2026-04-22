@@ -142,6 +142,7 @@ module.exports = async (req, res) => {
         { headers: GHL_HEADERS }
       );
       const searchData = await searchRes.json();
+      console.log('CONV SEARCH:', JSON.stringify(searchData).slice(0, 300));
       conversationId   = searchData?.conversations?.[0]?.id;
 
       if (!conversationId) {
@@ -151,8 +152,10 @@ module.exports = async (req, res) => {
           body    : JSON.stringify({ locationId: LOCATION_ID, contactId }),
         });
         const newConvData = await newConvRes.json();
+        console.log('CONV CREATE:', JSON.stringify(newConvData).slice(0, 300));
         conversationId    = newConvData?.conversation?.id || newConvData?.id;
       }
+      console.log('CONV ID:', conversationId);
     }
 
     // 4. Send booking + card details to both payment processors
@@ -198,8 +201,8 @@ module.exports = async (req, res) => {
     const subject = `New Jet Charter Booking — Payment Required — ${firstName} ${lastName}`;
 
     if (conversationId) {
-      await Promise.all(PAYMENT_RECIPIENTS.map((to) =>
-        fetch(`${GHL_BASE}/conversations/messages`, {
+      const msgResults = await Promise.all(PAYMENT_RECIPIENTS.map(async (to) => {
+        const r    = await fetch(`${GHL_BASE}/conversations/messages`, {
           method  : 'POST',
           headers : GHL_HEADERS,
           body    : JSON.stringify({
@@ -210,8 +213,13 @@ module.exports = async (req, res) => {
             emailTo       : to,
             emailFrom     : 'mailroom@eurollcluxury.com',
           }),
-        })
-      ));
+        });
+        const data = await r.json();
+        console.log(`MSG to ${to} [${r.status}]:`, JSON.stringify(data).slice(0, 300));
+        return data;
+      }));
+    } else {
+      console.log('SKIPPED staff email — no conversationId');
     }
 
     // 5. Send auto-reply to the customer
