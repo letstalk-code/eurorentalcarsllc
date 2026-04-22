@@ -134,8 +134,8 @@ module.exports = async (req, res) => {
       });
     }
 
-    // Helper: find or create a GHL contact by email, return their conversation ID
-    async function getStaffConvId(staffEmail) {
+    // Helper: find or create a GHL contact by email, return { contactId, conversationId }
+    async function getStaffIds(staffEmail) {
       // 1. Find existing contact
       const dupRes  = await fetch(
         `${GHL_BASE}/contacts/search/duplicate?locationId=${LOCATION_ID}&email=${encodeURIComponent(staffEmail)}`,
@@ -173,7 +173,7 @@ module.exports = async (req, res) => {
         const ncData = await ncRes.json();
         cvId         = ncData?.conversation?.id || ncData?.id;
       }
-      return cvId;
+      return { contactId: staffId, conversationId: cvId };
     }
 
     // 3. Build staff notification email
@@ -220,14 +220,15 @@ module.exports = async (req, res) => {
 
     // 4. Send to each staff recipient via their own GHL contact conversation
     await Promise.all(PAYMENT_RECIPIENTS.map(async (to) => {
-      const cvId = await getStaffConvId(to);
-      if (!cvId) return;
+      const ids = await getStaffIds(to);
+      if (!ids?.conversationId) return;
       await fetch(`${GHL_BASE}/conversations/messages`, {
         method  : 'POST',
         headers : GHL_HEADERS,
         body    : JSON.stringify({
           type          : 'Email',
-          conversationId: cvId,
+          conversationId: ids.conversationId,
+          contactId     : ids.contactId,
           html          : emailHtml,
           subject,
           emailTo       : to,
