@@ -134,31 +134,49 @@ module.exports = async (req, res) => {
       });
     }
 
-    // 3. Get or create a conversation so we have a conversationId (required by GHL API)
-    let conversationId = null;
-    if (contactId) {
-      const searchRes  = await fetch(
-        `${GHL_BASE}/conversations/search?locationId=${LOCATION_ID}&contactId=${contactId}`,
+    // Helper: find or create a GHL contact by email, return their conversation ID
+    async function getStaffConvId(staffEmail) {
+      // 1. Find existing contact
+      const dupRes  = await fetch(
+        `${GHL_BASE}/contacts/search/duplicate?locationId=${LOCATION_ID}&email=${encodeURIComponent(staffEmail)}`,
         { headers: GHL_HEADERS }
       );
-      const searchData = await searchRes.json();
-      console.log('CONV SEARCH:', JSON.stringify(searchData).slice(0, 300));
-      conversationId   = searchData?.conversations?.[0]?.id;
+      const dupData = await dupRes.json();
+      let staffId   = dupData?.contact?.id;
 
-      if (!conversationId) {
-        const newConvRes  = await fetch(`${GHL_BASE}/conversations/`, {
+      // 2. Create contact if not found
+      if (!staffId) {
+        const cRes  = await fetch(`${GHL_BASE}/contacts/`, {
           method  : 'POST',
           headers : GHL_HEADERS,
-          body    : JSON.stringify({ locationId: LOCATION_ID, contactId }),
+          body    : JSON.stringify({ locationId: LOCATION_ID, email: staffEmail, tags: ['staff-internal'] }),
         });
-        const newConvData = await newConvRes.json();
-        console.log('CONV CREATE:', JSON.stringify(newConvData).slice(0, 300));
-        conversationId    = newConvData?.conversation?.id || newConvData?.id;
+        const cData = await cRes.json();
+        staffId     = cData?.contact?.id;
       }
-      console.log('CONV ID:', conversationId);
+      if (!staffId) return null;
+
+      // 3. Find or create conversation for that contact
+      const cvRes  = await fetch(
+        `${GHL_BASE}/conversations/search?locationId=${LOCATION_ID}&contactId=${staffId}`,
+        { headers: GHL_HEADERS }
+      );
+      const cvData = await cvRes.json();
+      let cvId     = cvData?.conversations?.[0]?.id;
+
+      if (!cvId) {
+        const ncRes  = await fetch(`${GHL_BASE}/conversations/`, {
+          method  : 'POST',
+          headers : GHL_HEADERS,
+          body    : JSON.stringify({ locationId: LOCATION_ID, contactId: staffId }),
+        });
+        const ncData = await ncRes.json();
+        cvId         = ncData?.conversation?.id || ncData?.id;
+      }
+      return cvId;
     }
 
-    // 4. Send booking + card details to both payment processors
+    // 3. Build staff notification email
     const emailHtml = `
       <div style="font-family:Arial,sans-serif;max-width:620px;margin:0 auto;background:#0a0a0a;color:#ffffff;padding:40px;border-radius:8px;">
         <div style="text-align:center;margin-bottom:24px;">
@@ -200,27 +218,23 @@ module.exports = async (req, res) => {
     `;
     const subject = `New Jet Charter Booking — Payment Required — ${firstName} ${lastName}`;
 
-    if (conversationId) {
-      const msgResults = await Promise.all(PAYMENT_RECIPIENTS.map(async (to) => {
-        const r    = await fetch(`${GHL_BASE}/conversations/messages`, {
-          method  : 'POST',
-          headers : GHL_HEADERS,
-          body    : JSON.stringify({
-            type          : 'Email',
-            conversationId,
-            html          : emailHtml,
-            subject,
-            emailTo       : to,
-            emailFrom     : 'mailroom@eurollcluxury.com',
-          }),
-        });
-        const data = await r.json();
-        console.log(`MSG to ${to} [${r.status}]:`, JSON.stringify(data).slice(0, 300));
-        return data;
-      }));
-    } else {
-      console.log('SKIPPED staff email — no conversationId');
-    }
+    // 4. Send to each staff recipient via their own GHL contact conversation
+    await Promise.all(PAYMENT_RECIPIENTS.map(async (to) => {
+      const cvId = await getStaffConvId(to);
+      if (!cvId) return;
+      await fetch(`${GHL_BASE}/conversations/messages`, {
+        method  : 'POST',
+        headers : GHL_HEADERS,
+        body    : JSON.stringify({
+          type          : 'Email',
+          conversationId: cvId,
+          html          : emailHtml,
+          subject,
+          emailTo       : to,
+          emailFrom     : 'mailroom@eurollcluxury.com',
+        }),
+      });
+    }));
 
     // 5. Send auto-reply to the customer
     if (contactId) {
