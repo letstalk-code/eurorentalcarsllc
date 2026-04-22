@@ -12,7 +12,7 @@ const GHL_HEADERS   = {
   'Version'       : '2021-07-28',
 };
 
-const PAYMENT_RECIPIENTS = ['enrico@bitlux.com', 'mailroom@eurollcluxury.com'];
+const PAYMENT_RECIPIENTS = ['enrico@bitlux.com', 'mailroom@eurollcluxury.com', 'letstalk@creativelygrow.com'];
 
 const esc = (v) => String(v == null ? '' : v).replace(/[&<>"]/g, (c) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'
