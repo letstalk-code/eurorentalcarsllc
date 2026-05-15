@@ -723,6 +723,9 @@
               </label>
             </div>
 
+            <input type="text" id="jet-company-url" name="company_url" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+            <div id="jet-turnstile" style="margin-bottom:16px;"></div>
+
             <button type="button" id="book-flight-btn" class="btn btn-accent btn-submit">
               Book Flight
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -880,6 +883,9 @@
 </script>
 <script>
 (function() {
+  // Cloudflare Turnstile — paste your site key here to enable the bot challenge. Honeypot still protects when empty.
+  var TURNSTILE_SITE_KEY = '';
+
   var form = document.getElementById('jet-form');
   var paymentSection = document.getElementById('payment-section');
   var success = document.getElementById('jet-success');
@@ -887,6 +893,15 @@
   var bookBtn = document.getElementById('book-flight-btn');
 
   if (!form) return;
+
+  if (TURNSTILE_SITE_KEY) {
+    var s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+    var ts = document.getElementById('jet-turnstile');
+    if (ts) { ts.className = 'cf-turnstile'; ts.setAttribute('data-sitekey', TURNSTILE_SITE_KEY); ts.setAttribute('data-theme', 'dark'); }
+  }
 
   // ── Flight Type Toggle ──
   var flightToggle = document.querySelector('.flight-toggle');
@@ -975,6 +990,13 @@
     bookBtn.disabled = true;
     bookBtn.textContent = 'Processing...';
 
+    var tsToken = (TURNSTILE_SITE_KEY && window.turnstile) ? (window.turnstile.getResponse() || '') : '';
+    if (TURNSTILE_SITE_KEY && !tsToken) {
+      bookBtn.disabled = false; bookBtn.textContent = 'Book Flight';
+      alert('Please complete the verification challenge.');
+      return;
+    }
+
     // Gather payload
     var activeFlightType = flightToggle.querySelector('.active');
     var activeTripType = tripToggle.querySelector('.active');
@@ -999,6 +1021,8 @@
       cardNumber     : document.getElementById('card-number').value.trim(),
       cardExpiry     : document.getElementById('card-expiry').value.trim(),
       cardCvc        : document.getElementById('card-cvc').value.trim(),
+      company_url    : (document.getElementById('jet-company-url') || {}).value || '',
+      cfTurnstileToken : tsToken,
       source         : 'Website Jet Charter Booking'
     };
 

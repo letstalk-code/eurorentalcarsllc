@@ -1,6 +1,8 @@
 // api/booking.js — Euro LLC Reservation Request → GHL
 // Vercel Serverless Function (runs server-side, API key is never exposed to browser)
 
+const { spamCheck } = require('./_spam-check.js');
+
 const GHL_API_KEY   = process.env.GHL_API_KEY || 'pit-0177eb2b-4e0b-42fa-b5f7-9847f550f391';
 const LOCATION_ID   = 'XGeJzm18TPBBUJbQrIFA';
 const PIPELINE_ID   = 'dnt5QEZaFqNk30HeINhF'; // Smart Website Pipeline
@@ -19,6 +21,13 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
   if (req.method !== 'POST')    { res.status(405).json({ error: 'Method not allowed' }); return; }
+
+  const check = await spamCheck(req);
+  if (!check.ok) {
+    if (check.silent) { res.status(200).json({ success: true }); return; }
+    res.status(400).json({ error: check.reason || 'Verification failed' });
+    return;
+  }
 
   const {
     firstName, lastName, email, phone,
