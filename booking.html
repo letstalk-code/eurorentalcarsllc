@@ -453,6 +453,9 @@
             </label>
           </div>
 
+          <input type="text" name="company_url" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+          <div id="booking-turnstile" style="margin-bottom:16px;"></div>
+
           <button type="submit" class="btn btn-accent btn-submit">
             Submit Reservation Request
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -586,12 +589,24 @@
 <script src="./js/main.js"></script>
 <script>
 (function() {
+  // Cloudflare Turnstile — paste your site key here to enable the bot challenge. Honeypot still protects when empty.
+  var TURNSTILE_SITE_KEY = '';
+
   var form    = document.getElementById('booking-form');
   var success = document.getElementById('booking-success');
   var submitBtn;
 
   if (!form) return;
   submitBtn = form.querySelector('[type="submit"]');
+
+  if (TURNSTILE_SITE_KEY) {
+    var s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+    var ts = document.getElementById('booking-turnstile');
+    if (ts) { ts.className = 'cf-turnstile'; ts.setAttribute('data-sitekey', TURNSTILE_SITE_KEY); ts.setAttribute('data-theme', 'dark'); }
+  }
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -615,6 +630,13 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting…';
 
+    var tsToken = (TURNSTILE_SITE_KEY && window.turnstile) ? (window.turnstile.getResponse() || '') : '';
+    if (TURNSTILE_SITE_KEY && !tsToken) {
+      submitBtn.disabled = false; submitBtn.textContent = 'Submit Reservation Request';
+      alert('Please complete the verification challenge.');
+      return;
+    }
+
     var payload = {
       firstName      : form.first_name.value.trim(),
       lastName       : form.last_name.value.trim(),
@@ -630,6 +652,8 @@
       licenseState   : form.license_state ? form.license_state.value.trim() : '',
       licenseExpiry  : form.license_expiry ? form.license_expiry.value : '',
       notes          : form.notes ? form.notes.value.trim() : '',
+      company_url    : form.company_url ? form.company_url.value : '',
+      cfTurnstileToken : tsToken,
       source         : 'Website Reservation Request'
     };
 
